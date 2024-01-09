@@ -27,6 +27,7 @@ class PlaylistScreen extends StatefulWidget {
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); // Dodanie zmiennej _scaffoldKey
   LayoutType _layoutType = LayoutType.list;
   bool showPlaylists = true;
   int selectedPlaylistIndex = -1; // Index of the selected playlist, initially set to -1 (no selection)
@@ -72,40 +73,31 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-          'Your library',
-          style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+          'Search',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return GestureDetector(
-              onTap: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/anime.jpg'),
-                radius: 18, // Zmniejszenie rozmiaru zdjęcia profilowego w AppBar
-              ),
-            );
+        leading: InkWell(
+          onTap: () {
+            _scaffoldKey.currentState!.openDrawer();
           },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/anime.jpg'),
+              radius: 16.0,
+            ),
+          ),
         ),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              print('Search icon was clicked');
-            },
-          ),
-          SizedBox(width: 3),
-          IconButton(
-            icon: Icon(
-              _layoutType == LayoutType.list ? Icons.grid_view : Icons.list,
-            ),
-            onPressed: () {
-              setState(() {
-                _layoutType = _layoutType == LayoutType.list ? LayoutType.grid : LayoutType.list;
-              });
+              // Przykładowa funkcja dla przycisku kamery
             },
           ),
         ],
