@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
               ),
               child: const Text('Podcasts'),
             ),
-            const SizedBox(width: 9),
+            const SizedBox(width: 10),
             TextButton(
               onPressed: () {},
               style: TextButton.styleFrom(
