@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50.0),
                 child: SizedBox(
                   width: 40,
-                  //lol
+                  //polska
                   height: 40,
                   child: Image.asset(
                     'assets/anime.jpg',
