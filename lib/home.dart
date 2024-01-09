@@ -17,15 +17,14 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         key: _scaffoldKey,
-        drawer: Drawer(),
+        drawer: const Drawer(),
         appBar: AppBar(
           leading: InkWell(
             onTap: () {
               _scaffoldKey.currentState?.openDrawer();
             },
-            child: CircleAvatar(
+            child: const CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
-              radius: 20, // Dostosuj promień ikony
             ),
           ),
           backgroundColor: Colors.black,
@@ -33,7 +32,8 @@ class MyApp extends StatelessWidget {
             TextButton(
               onPressed: () {},
               style: TextButton.styleFrom(
-                foregroundColor: Colors.black, backgroundColor: Colors.green,
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.green,
               ),
               child: const Text('All'),
             ),
@@ -42,8 +42,7 @@ class MyApp extends StatelessWidget {
               onPressed: () {},
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
-                fixedSize: const Size(30, 30),
-                backgroundColor: Colors.black,
+                backgroundColor: const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text(
                 'Music',
@@ -54,7 +53,8 @@ class MyApp extends StatelessWidget {
             TextButton(
               onPressed: () {},
               style: TextButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                backgroundColor: const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text('Podcasts'),
             ),
@@ -62,7 +62,8 @@ class MyApp extends StatelessWidget {
             TextButton(
               onPressed: () {},
               style: TextButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                backgroundColor: const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text('Wrapped'),
             ),
