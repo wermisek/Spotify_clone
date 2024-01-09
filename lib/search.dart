@@ -45,8 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Spacer(),
             IconButton(
               icon: Icon(Icons.camera_alt),
-              onPressed: () {
-                // Możesz dodać tutaj obsługę kliknięcia ikony aparatu, jeśli chcesz
+              onPressed: () { //kamera ale bez kamery lol
               },
             ),
           ],
@@ -101,6 +100,22 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Główna',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Wyszukaj',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_music),
+            label: 'Biblioteka',
+          ),
+        ],
       ),
     );
   }
