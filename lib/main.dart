@@ -76,7 +76,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-          'Search',
+          'Your library',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
