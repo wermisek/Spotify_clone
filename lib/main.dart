@@ -33,7 +33,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
 
   final List<Map<String, dynamic>> playlists = [
     {
-      "title": "Polubione utowory",
+      "title": "Liked songs",
       "image": "assets/liked.png",
     },
     {
@@ -57,95 +57,115 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/piec.jpg",
     },
     {
-      "title": "Dodaj Wykonawcow",
+      "title": "Add artists",
       "image": "assets/plus.jpg",
     },
     {
-      "title": "Dodaj Utwory",
+      "title": "Add podcast & shows",
       "image": "assets/plus.jpg",
     }
   ];
+
+  Color playlistsButtonColor = Colors.green; // Color for the Playlists button
+  Color artistsButtonColor = Colors.black; // Color for the Artists button
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Biblioteka',
-          style: TextStyle(fontSize: 24),
+          'Your library',
+          style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+        ),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/anime.jpg'),
+                radius: 18, // Zmniejszenie rozmiaru zdjęcia profilowego w AppBar
+              ),
+            );
+          },
         ),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              print('Kliknięto ikonę wyszukiwania');
+              print('Search icon was clicked');
             },
           ),
-          SizedBox(width: 16),
+          SizedBox(width: 3),
           IconButton(
             icon: Icon(
               _layoutType == LayoutType.list ? Icons.grid_view : Icons.list,
             ),
             onPressed: () {
               setState(() {
-                _layoutType =
-                _layoutType == LayoutType.list ? LayoutType.grid : LayoutType.list;
+                _layoutType = _layoutType == LayoutType.list ? LayoutType.grid : LayoutType.list;
               });
             },
           ),
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.red,
+        child: Container(
+          color: Color.fromARGB(80, 80, 80, 80), // Tło całego panelu bocznego
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(80, 80, 80, 80), // Tło nagłówka
+                ),
+                accountName: Text(
+                  "Ugum",
+                  style: TextStyle(fontSize: 24), // Zwiększenie rozmiaru czcionki
+                ),
+                accountEmail: Text(
+                  "ugumy@email.com",
+                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  backgroundImage: AssetImage('assets/anime.jpg'),
+                  radius: 30, // Zmniejszenie rozmiaru zdjęcia profilowego
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/anime.jpg'), // Twoje zdjęcie profilowe
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'wermis',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  Text(
-                    'ugumy@mail.com',
-                    style: TextStyle(color: Colors.white, fontSize: 14),
-                  ),
-                ],
+              ListTile(
+                leading: Icon(Icons.new_releases),
+                title: Text(
+                  'Nowości',
+                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  print('Wybrano Nowości');
+                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
+                },
               ),
-            ),
-            ListTile(
-              title: Text('New', style: TextStyle(fontSize: 18)),
-              onTap: () {
-                // Akcja dla opcji 'New'
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('History', style: TextStyle(fontSize: 18)),
-              onTap: () {
-                // Akcja dla opcji 'History'
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Settings and privacy', style: TextStyle(fontSize: 18)),
-              onTap: () {
-                // Akcja dla opcji 'Settings and privacy'
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(
+                  'Ustawienia',
+                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  print('Wybrano Ustawienia');
+                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
+                },
+              ),
+            ],
+          ),
         ),
       ),
+
+
+
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,15 +178,17 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     onPressed: () {
                       setState(() {
                         showPlaylists = true;
+                        playlistsButtonColor = Colors.green;
+                        artistsButtonColor = Colors.black;
                       });
-                      print('Playlisty');
+                      print('Playlists');
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey[700],
+                    fillColor: playlistsButtonColor,
                     child: Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Text(
-                        'Playlisty',
+                        'Playlists',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
@@ -182,15 +204,17 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     onPressed: () {
                       setState(() {
                         showPlaylists = false;
+                        artistsButtonColor = Colors.green;
+                        playlistsButtonColor = Colors.black;
                       });
-                      print('Wykonawcy');
+                      print('Artists');
                     },
                     elevation: 2.0,
-                    fillColor: Colors.grey[700],
+                    fillColor: artistsButtonColor,
                     child: Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Text(
-                        'Wykonawcy',
+                        'Artists',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
@@ -206,9 +230,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             ),
             ListTile(
               leading: Icon(Icons.access_time),
-              title: Text('Ostatnie'),
+              title: Text('Recent'),
               onTap: () {
-                print('Ostatnie playlisty');
+                print('Latest playlist');
               },
             ),
             _buildPlaylist(),
@@ -219,15 +243,15 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Główna',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Wyszukaj',
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_music),
-            label: 'Biblioteka',
+            label: 'Library',
           ),
         ],
       ),
@@ -238,7 +262,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     if (!showPlaylists) {
       return Center(
         child: Text(
-          'Nie posiadasz żadnych dodanych wykonawców',
+          "You don't have any artists added",
           style: TextStyle(fontSize: 18),
         ),
       );
@@ -275,7 +299,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         setState(() {
           selectedPlaylistIndex = index;
         });
-        print('Wybrano playlistę: ${playlists[index]["title"]}');
+        print('Selected playlist: ${playlists[index]["title"]}');
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
