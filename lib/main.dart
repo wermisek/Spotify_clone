@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'settings.dart';
+import 'news.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -27,6 +30,7 @@ class PlaylistScreen extends StatefulWidget {
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); // Dodanie zmiennej _scaffoldKey
   LayoutType _layoutType = LayoutType.list;
   bool showPlaylists = true;
   int selectedPlaylistIndex = -1; // Index of the selected playlist, initially set to -1 (no selection)
@@ -72,40 +76,31 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Your library',
-          style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return GestureDetector(
-              onTap: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/anime.jpg'),
-                radius: 18, // Zmniejszenie rozmiaru zdjęcia profilowego w AppBar
-              ),
-            );
+        leading: InkWell(
+          onTap: () {
+            _scaffoldKey.currentState!.openDrawer();
           },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/anime.jpg'),
+              radius: 14.0,
+            ),
+          ),
         ),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              print('Search icon was clicked');
-            },
-          ),
-          SizedBox(width: 3),
-          IconButton(
-            icon: Icon(
-              _layoutType == LayoutType.list ? Icons.grid_view : Icons.list,
-            ),
-            onPressed: () {
-              setState(() {
-                _layoutType = _layoutType == LayoutType.list ? LayoutType.grid : LayoutType.list;
-              });
+              // Przykładowa funkcja dla przycisku kamery
             },
           ),
         ],
@@ -122,16 +117,16 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 accountName: Text(
                   "Ugum",
-                  style: TextStyle(fontSize: 24), // Zwiększenie rozmiaru czcionki
+                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
                 ),
                 accountEmail: Text(
                   "ugumy@email.com",
-                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                  style: TextStyle(fontSize: 16), // Zwiększenie rozmiaru czcionki
                 ),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.grey,
                   backgroundImage: AssetImage('assets/anime.jpg'),
-                  radius: 30, // Zmniejszenie rozmiaru zdjęcia profilowego
+                  radius: 14, // Zmniejszenie rozmiaru zdjęcia profilowego
                 ),
               ),
               ListTile(
@@ -142,6 +137,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => NewsScreen())); // Przekierowanie do ekranu NewsScreen
                   print('Wybrano Nowości');
                   // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                 },
@@ -153,9 +149,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
                 ),
                 onTap: () {
-                  Navigator.pop(context);
-                  print('Wybrano Ustawienia');
-                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsScreen()),
+                  );
                 },
               ),
             ],

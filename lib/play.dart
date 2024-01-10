@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: const MyMusicPlayer(),
+      home: MyMusicPlayer(),
     );
   }
 }
@@ -105,14 +107,17 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                 margin: const EdgeInsets.only(top: 35.0),
                 width: 350.0, // Dostosuj szerokość według potrzeb
                 height: 350.0, // Dostosuj wysokość według potrzebs
-                color: Colors.grey,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
               ),
             ),
             const SizedBox(height: 20.0),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'Nazwa utworu',
@@ -122,7 +127,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                     ),
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     'Artysta',
