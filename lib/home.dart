@@ -25,15 +25,15 @@ class _MyAppState extends State<MyApp> {
         key: _scaffoldKey,
         drawer: Drawer(
           child: Container(
-            color: Colors.black, // Tło całego panelu bocznego
+            color: Colors.black,
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
                 UserAccountsDrawerHeader(
                   decoration: const BoxDecoration(
-                    color: Colors.black, // Tło nagłówka
+                    color: Colors.black,
                   ),
-                  accountEmail: const Text(''), // pozostaw pusty tekst, ponieważ email jest wymagany
+                  accountEmail: const Text(''),
                   accountName: Row(
                     children: <Widget>[
                       const SizedBox(
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                           radius: 50.0,
                         ),
                       ),
-                      const SizedBox(width: 15), // Dodaj odstęp o szerokości 10 pikseli
+                      const SizedBox(width: 15),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,6 @@ class _MyAppState extends State<MyApp> {
                     ],
                   ),
                 ),
-
                 ListTile(
                   leading: const Icon(
                     Icons.new_releases,
@@ -78,11 +77,10 @@ class _MyAppState extends State<MyApp> {
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
-                    ), // Zwiększenie rozmiaru czcionki
+                    ),
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                   },
                 ),
                 ListTile(
@@ -95,11 +93,10 @@ class _MyAppState extends State<MyApp> {
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
-                    ), // Zwiększenie rozmiaru czcionki
+                    ),
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                   },
                 ),
                 ListTile(
@@ -112,11 +109,10 @@ class _MyAppState extends State<MyApp> {
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
-                    ), // Zwiększenie rozmiaru czcionki
+                    ),
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
                   },
                 ),
               ],
@@ -139,8 +135,11 @@ class _MyAppState extends State<MyApp> {
                 _handleButtonSelection('All');
               },
               style: TextButton.styleFrom(
-                foregroundColor: selectedButton == 'All' ? Colors.white : Colors.white,
-                backgroundColor: selectedButton == 'All' ? Colors.green : const Color.fromARGB(80, 80, 80, 80),
+                foregroundColor:
+                selectedButton == 'All' ? Colors.white : Colors.white,
+                backgroundColor: selectedButton == 'All'
+                    ? Colors.green
+                    : const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text('All'),
             ),
@@ -150,8 +149,11 @@ class _MyAppState extends State<MyApp> {
                 _handleButtonSelection('Music');
               },
               style: TextButton.styleFrom(
-                foregroundColor: selectedButton == 'Music' ? Colors.white : Colors.white,
-                backgroundColor: selectedButton == 'Music' ? Colors.green : const Color.fromARGB(80, 80, 80, 80),
+                foregroundColor:
+                selectedButton == 'Music' ? Colors.white : Colors.white,
+                backgroundColor: selectedButton == 'Music'
+                    ? Colors.green
+                    : const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text(
                 'Music',
@@ -164,8 +166,11 @@ class _MyAppState extends State<MyApp> {
                 _handleButtonSelection('Podcasts');
               },
               style: TextButton.styleFrom(
-                foregroundColor: selectedButton == 'Podcasts' ? Colors.white : Colors.white,
-                backgroundColor: selectedButton == 'Podcasts' ? Colors.green : const Color.fromARGB(80, 80, 80, 80),
+                foregroundColor:
+                selectedButton == 'Podcasts' ? Colors.white : Colors.white,
+                backgroundColor: selectedButton == 'Podcasts'
+                    ? Colors.green
+                    : const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text('Podcasts'),
             ),
@@ -175,17 +180,120 @@ class _MyAppState extends State<MyApp> {
                 _handleButtonSelection('Wrapped');
               },
               style: TextButton.styleFrom(
-                foregroundColor: selectedButton == 'Wrapped' ? Colors.white : Colors.white,
-                backgroundColor: selectedButton == 'Wrapped' ? Colors.green : const Color.fromARGB(80, 80, 80, 80),
+                foregroundColor:
+                selectedButton == 'Wrapped' ? Colors.white : Colors.white,
+                backgroundColor: selectedButton == 'Wrapped'
+                    ? Colors.green
+                    : const Color.fromARGB(80, 80, 80, 80),
               ),
               child: const Text('Wrapped'),
             ),
           ],
         ),
-        body: Row(
+        body: Column(
           children: [
-            Container(
-              // Tutaj możesz umieścić kafelki
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    // Tutaj dodaj logikę obsługi przycisku
+                  },
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                    minimumSize: Size(100, 60),
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/liked.png',
+                        width: 40,
+                        height: 40,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Przycisk',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    // Tutaj dodaj logikę obsługi przycisku
+                  },
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                    minimumSize: Size(80, 40),
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/liked.png',
+                        width: 40,
+                        height: 40,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Przycisk',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    // Tutaj dodaj logikę obsługi przycisku
+                  },
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                  ),
+                  child: Text(
+                    'Przycisk',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    // Tutaj dodaj logikę obsługi przycisku
+                  },
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                  ),
+                  child: Text(
+                    'Przycisk',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -196,10 +304,8 @@ class _MyAppState extends State<MyApp> {
   void _handleButtonSelection(String buttonName) {
     setState(() {
       if (selectedButton == buttonName && selectedButton != 'All') {
-        // Odznacz przycisk, jeśli jest już zaznaczony i nie jest to "All"
         selectedButton = '';
       } else {
-        // Zaznacz przycisk
         selectedButton = buttonName;
       }
     });
