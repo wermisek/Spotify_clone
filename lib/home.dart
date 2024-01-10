@@ -30,13 +30,13 @@ class _MyAppState extends State<MyApp> {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.black, // Tło nagłówka
                   ),
-                  accountEmail: Text(''), // pozostaw pusty tekst, ponieważ email jest wymagany
+                  accountEmail: const Text(''), // pozostaw pusty tekst, ponieważ email jest wymagany
                   accountName: Row(
                     children: <Widget>[
-                      Container(
+                      const SizedBox(
                         width: 50,
                         height: 50,
                         child: CircleAvatar(
@@ -44,12 +44,12 @@ class _MyAppState extends State<MyApp> {
                           radius: 50.0,
                         ),
                       ),
-                      SizedBox(width: 10), // Dodaj odstęp o szerokości 10 pikseli
+                      const SizedBox(width: 15), // Dodaj odstęp o szerokości 10 pikseli
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
+                          const Text(
                             'Ugum',
                             style: TextStyle(
                               fontSize: 18,
