@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'settings.dart';
+import 'news.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -89,7 +92,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
-              radius: 16.0,
+              radius: 14.0,
             ),
           ),
         ),
@@ -114,16 +117,16 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 accountName: Text(
                   "Ugum",
-                  style: TextStyle(fontSize: 24), // Zwiększenie rozmiaru czcionki
+                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
                 ),
                 accountEmail: Text(
                   "ugumy@email.com",
-                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                  style: TextStyle(fontSize: 16), // Zwiększenie rozmiaru czcionki
                 ),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.grey,
                   backgroundImage: AssetImage('assets/anime.jpg'),
-                  radius: 30, // Zmniejszenie rozmiaru zdjęcia profilowego
+                  radius: 14, // Zmniejszenie rozmiaru zdjęcia profilowego
                 ),
               ),
               ListTile(
@@ -134,6 +137,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => NewsScreen())); // Przekierowanie do ekranu NewsScreen
                   print('Wybrano Nowości');
                   // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                 },
@@ -145,9 +149,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
                 ),
                 onTap: () {
-                  Navigator.pop(context);
-                  print('Wybrano Ustawienia');
-                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsScreen()),
+                  );
                 },
               ),
             ],
