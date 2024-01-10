@@ -346,7 +346,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     }
 
     return Container(
-      color: Colors.black87, // Ustalenie tła dla całej sekcji playlisty
+      color: Colors.black, // Tło dla całej sekcji playlisty
       child: _layoutType == LayoutType.list
           ? ListView.builder(
         shrinkWrap: true,
@@ -361,8 +361,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 2.0,
+          mainAxisSpacing: 2.0,
         ),
         itemCount: playlists.length,
         itemBuilder: (context, index) {
@@ -382,7 +382,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         print('Selected playlist: ${playlists[index]["title"]}');
       },
       child: Card(
-        color: Colors.black, // Zmiana koloru tła karty na czarny
+        color: Colors.black, // Tło karty ustawione na czarny kolor
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(1.0),
@@ -394,7 +394,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors
-                        .black, // Ustawienie koloru tła dla kontenera z obrazem
+                        .black, // Tło kontenera z obrazem ustawione na czarny kolor
                   ),
                   child: Image.asset(
                     playlists[index]["image"],
@@ -406,15 +406,13 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               Expanded(
                 child: Container(
                   color: Colors.black,
-                  // Ustawienie koloru tła dla kontenera (rodzica kolumny)
+                  // Tło kontenera rodzica kolumny ustawione na czarny kolor
                   padding: EdgeInsets.symmetric(vertical: 8.0),
-                  // Ustawienie odstępów wertykalnych dla kolumny
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2.0),
-                        // Dodanie paddingu na dole dla pierwszego tekstu
                         child: Text(
                           playlists[index]["title"],
                           style: TextStyle(
@@ -426,7 +424,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 2.0),
-                        // Dodanie paddingu na górze dla drugiego tekstu
                         child: Text(
                           playlists[index]["desc"],
                           style: TextStyle(
