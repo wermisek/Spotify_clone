@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: MyMusicPlayer(),
+      home: const MyMusicPlayer(),
     );
   }
 }
@@ -27,15 +27,12 @@ class MyMusicPlayer extends StatefulWidget {
 
 class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
-  double _maxSliderValue = 1.0;
+  final double _maxSliderValue = 1.0;
   bool _isPlaying = false;
 
   void _playPauseMusic() {
     if (_isPlaying) {
-      // Zatrzymaj odtwarzanie utworu
-      // Tutaj możesz dodać kod do zatrzymywania utworu
     } else {
-      // Rozpocznij odtwarzanie utworu
       _playMusic();
     }
   }
@@ -43,10 +40,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   void _playMusic() {
     const duration = Duration(seconds: 10);
 
-    // Symulacja czasu trwania utworu
     Future.delayed(duration, () {
       setState(() {
-        // Po upływie czasu, ustaw pasek postępu na maksymalną wartość
         _currentSliderValue = _maxSliderValue;
         _isPlaying = false;
       });
@@ -55,14 +50,12 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
 
   void _skipToPrevious() {
     setState(() {
-      // Przesuń pasek postępu o -0.1 (10%) w tył
       _currentSliderValue = (_currentSliderValue - 0.1).clamp(0.0, _maxSliderValue);
     });
   }
 
   void _skipToNext() {
     setState(() {
-      // Przesuń pasek postępu o +0.1 (10%) do przodu
       _currentSliderValue = (_currentSliderValue + 0.1).clamp(0.0, _maxSliderValue);
     });
   }
@@ -76,22 +69,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_horiz),
+            icon: const Icon(Icons.menu),
             onPressed: () {
-              // Wywołaj menu
             },
           ),
         ],
         leading: IconButton(
-          icon: const Icon(Icons.keyboard_arrow_down),
+          icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
-            // Wywołaj funkcję dla strzałki w dół
           },
         ),
         title: const Text(
           'Liked Songs',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            fontSize: 13.0,
           ),
         ),
         centerTitle: true,
@@ -105,66 +97,88 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               alignment: Alignment.center,
               child: Container(
                 margin: const EdgeInsets.only(top: 35.0),
-                width: 350.0, // Dostosuj szerokość według potrzeb
-                height: 350.0, // Dostosuj wysokość według potrzebs
+                width: 350.0,
+                height: 350.0,
                 decoration: BoxDecoration(
                   color: Colors.grey,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
             ),
             const SizedBox(height: 20.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text(
-                    'Nazwa utworu',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Nazwa utworu',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 8.0),
+                        Text(
+                          'Artysta',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text(
-                    'Artysta',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.grey,
-                    ),
+                  const SizedBox(height: 20.0),
+                  Slider(
+                    value: _currentSliderValue,
+                    max: _maxSliderValue,
+                    onChanged: (double value) {
+                      setState(() {
+                        _currentSliderValue = value;
+                      });
+                    },
                   ),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      IconButton(
+                        icon: const Icon(Icons.skip_previous),
+                        onPressed: _skipToPrevious,
+                      ),
+                      IconButton(
+                        icon: _isPlaying
+                            ? const Icon(Icons.pause, size: 36.0)
+                            : const Icon(Icons.play_arrow, size: 36.0),
+                        onPressed: _playPauseMusic,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.skip_next),
+                        onPressed: _skipToNext,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
+                ],
+              ),
             ),
-            const SizedBox(height: 20.0),
-            Slider(
-              value: _currentSliderValue,
-              max: _maxSliderValue,
-              onChanged: (double value) {
-                setState(() {
-                  _currentSliderValue = value;
-                });
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
               },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.skip_previous),
-                  onPressed: _skipToPrevious,
-                ),
-                IconButton(
-                  icon: _isPlaying ? const Icon(Icons.pause) : const Icon(Icons.play_arrow),
-                  onPressed: _playPauseMusic,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.skip_next),
-                  onPressed: _skipToNext,
-                ),
-              ],
             ),
           ],
         ),
