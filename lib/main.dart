@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'settings.dart';
-import 'news.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,50 +39,62 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   final List<Map<String, dynamic>> playlists = [
     {
       "title": "Liked songs",
+      "desc": "Playlist • 20 tracks",
       "image": "assets/liked.png",
     },
     {
       "title": "Twoja playlista 1",
+      "desc": "Playlist • wermis",
       "image": "assets/dwa.jpg",
     },
     {
       "title": "Twoja playlista 2",
+      "desc": "Playlist • grzesio",
       "image": "assets/trzy.jpeg",
     },
     {
       "title": "Twoja playlista 3",
+      "desc": "Playlist • przemek",
       "image": "assets/jeden.jpg",
     },
     {
       "title": "Twoja playlista 4",
+      "desc": "Playlist • jacek",
       "image": "assets/cztery.jpg",
     },
     {
       "title": "Twoja playlista 5",
+      "desc": "Playlist • ugum",
       "image": "assets/piec.jpg",
     },
     {
       "title": "Twoja playlista 6",
+      "desc": "Playlist • Kaliop",
       "image": "assets/piec.jpg",
     },
     {
       "title": "Twoja playlista 7",
+      "desc": "Playlist • HejkaTuLenka",
       "image": "assets/piec.jpg",
     },
     {
       "title": "Twoja playlista 8",
+      "desc": "Playlist • Kanye East",
       "image": "assets/piec.jpg",
     },
     {
       "title": "Twoja playlista 9",
+      "desc": "Playlist • kocham altki",
       "image": "assets/piec.jpg",
     },
     {
       "title": "Add artists",
+      "desc": "Add artist here",
       "image": "assets/plus.jpg",
     },
     {
       "title": "Add podcast & shows",
+      "desc": "Add podcasts and shows here",
       "image": "assets/plus.jpg",
     }
   ];
@@ -391,7 +401,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      'Playlist • GrzesioFresh',
+                      playlists[index]["desc"],
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
