@@ -1,7 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'settings.dart';
 import 'news.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -29,8 +29,11 @@ class PlaylistScreen extends StatefulWidget {
   _PlaylistScreenState createState() => _PlaylistScreenState();
 }
 
+
+
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); // Dodanie zmiennej _scaffoldKey
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
+      ScaffoldState>(); // Dodanie zmiennej _scaffoldKey
   LayoutType _layoutType = LayoutType.list;
   bool showPlaylists = true;
   int selectedPlaylistIndex = -1; // Index of the selected playlist, initially set to -1 (no selection)
@@ -58,6 +61,22 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     },
     {
       "title": "Twoja playlista 5",
+      "image": "assets/piec.jpg",
+    },
+    {
+      "title": "Twoja playlista 6",
+      "image": "assets/piec.jpg",
+    },
+    {
+      "title": "Twoja playlista 7",
+      "image": "assets/piec.jpg",
+    },
+    {
+      "title": "Twoja playlista 8",
+      "image": "assets/piec.jpg",
+    },
+    {
+      "title": "Twoja playlista 9",
       "image": "assets/piec.jpg",
     },
     {
@@ -107,60 +126,105 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
       drawer: Drawer(
         child: Container(
-          color: Color.fromARGB(80, 80, 80, 80), // Tło całego panelu bocznego
+          color: Colors.black, // Tło całego panelu bocznego
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(80, 80, 80, 80), // Tło nagłówka
+                  color: Colors.black, // Tło nagłówka
                 ),
-                accountName: Text(
-                  "Ugum",
-                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
-                ),
-                accountEmail: Text(
-                  "ugumy@email.com",
-                  style: TextStyle(fontSize: 16), // Zwiększenie rozmiaru czcionki
-                ),
-                currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  backgroundImage: AssetImage('assets/anime.jpg'),
-                  radius: 14, // Zmniejszenie rozmiaru zdjęcia profilowego
+                accountEmail: Text(''),
+                // pozostaw pusty tekst, ponieważ email jest wymagany
+                accountName: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 50,
+                      height: 50,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/anime.jpg'),
+                        radius: 50.0,
+                      ),
+                    ),
+                    SizedBox(width: 10), // Dodaj odstęp o szerokości 10 pikseli
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Ugum',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'View profile',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
+
               ListTile(
-                leading: Icon(Icons.new_releases),
-                title: Text(
-                  'Nowości',
-                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                leading: const Icon(
+                  Icons.new_releases,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  "What's new",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ), // Zwiększenie rozmiaru czcionki
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => NewsScreen())); // Przekierowanie do ekranu NewsScreen
-                  print('Wybrano Nowości');
                   // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text(
-                  'Ustawienia',
-                  style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
+                leading: const Icon(
+                  Icons.history,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  "Listening history",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ), // Zwiększenie rozmiaru czcionki
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  );
+                  Navigator.pop(context);
+                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  'Settings and privacy',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ), // Zwiększenie rozmiaru czcionki
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
                 },
               ),
             ],
           ),
         ),
       ),
-
-
 
 
       body: SingleChildScrollView(
@@ -305,8 +369,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           child: Row(
             children: <Widget>[
               SizedBox(
-                width: 70,
-                height: 70,
+                width: 60,
+                height: 60,
                 child: Image.asset(
                   playlists[index]["image"],
                   fit: BoxFit.cover,
@@ -314,13 +378,27 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               ),
               SizedBox(width: 16),
               Expanded(
-                child: Text(
-                  playlists[index]["title"],
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: isSelected ? Colors.green : Colors.white,
-                  ),
-                  textAlign: TextAlign.start,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      playlists[index]["title"],
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: isSelected ? Colors.green : Colors.white,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Playlist • GrzesioFresh',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
                 ),
               ),
             ],
