@@ -260,7 +260,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     elevation: 2.0,
                     fillColor: playlistsButtonColor,
                     child: Padding(
-                      padding: EdgeInsets.all(1.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Playlists',
                         style: TextStyle(
@@ -289,7 +289,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     elevation: 2.0,
                     fillColor: artistsButtonColor,
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Artists',
                         style: TextStyle(
