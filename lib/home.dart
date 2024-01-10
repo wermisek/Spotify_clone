@@ -29,24 +29,45 @@ class _MyAppState extends State<MyApp> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                const UserAccountsDrawerHeader(
+                UserAccountsDrawerHeader(
                   decoration: BoxDecoration(
                     color: Colors.black, // Tło nagłówka
                   ),
-                  accountName: Text(
-                    "Ugum",
-                    style: TextStyle(fontSize: 24), // Zwiększenie rozmiaru czcionki
-                  ),
-                  accountEmail: Text(
-                    "ugumy@email.com",
-                    style: TextStyle(fontSize: 20), // Zwiększenie rozmiaru czcionki
-                  ),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    backgroundImage: AssetImage('assets/anime.jpg'),
-                    radius: 30, // Zmniejszenie rozmiaru zdjęcia profilowego
+                  accountEmail: Text(''), // pozostaw pusty tekst, ponieważ email jest wymagany
+                  accountName: Row(
+                    children: <Widget>[
+                      Container(
+                        width: 50,
+                        height: 50,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage('assets/anime.jpg'),
+                          radius: 50.0,
+                        ),
+                      ),
+                      SizedBox(width: 10), // Dodaj odstęp o szerokości 10 pikseli
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Ugum',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'View profile',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.5),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
+
                 ListTile(
                   leading: const Icon(
                     Icons.new_releases,
