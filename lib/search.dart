@@ -25,32 +25,143 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        title: Row(
-          children: [
-            CircleAvatar(
+        title: Text(
+          'Search',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        leading: InkWell(
+          onTap: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
               radius: 16.0,
             ),
-            SizedBox(width: 8.0),
-            Text(
-              'Search',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Przykładowa funkcja dla przycisku kamery
+            },
+          ),
+        ],
+      ),
+
+      drawer: Drawer(
+        child: Container(
+          color: Colors.black, // Tło całego panelu bocznego
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.black, // Tło nagłówka
+                ),
+                accountEmail: Text(''),
+                // pozostaw pusty tekst, ponieważ email jest wymagany
+                accountName: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 50,
+                      height: 50,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/anime.jpg'),
+                        radius: 50.0,
+                      ),
+                    ),
+                    SizedBox(width: 10), // Dodaj odstęp o szerokości 10 pikseli
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Ugum',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'View profile',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Spacer(),
-            IconButton(
-              icon: Icon(Icons.camera_alt),
-              onPressed: () { //kamera ale bez kamery lol
-              },
-            ),
-          ],
+
+              ListTile(
+                leading: const Icon(
+                  Icons.new_releases,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  "What's new",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ), // Zwiększenie rozmiaru czcionki
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.history,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  "Listening history",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ), // Zwiększenie rozmiaru czcionki
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  'Settings and privacy',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ), // Zwiększenie rozmiaru czcionki
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
+                },
+              ),
+            ],
+          ),
         ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -105,20 +216,21 @@ class _SearchScreenState extends State<SearchScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Główna',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Wyszukaj',
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_music),
-            label: 'Biblioteka',
+            label: 'Your Library',
           ),
         ],
       ),
     );
   }
+
 
   Widget _buildTile(String imagePath, String genreName) {
     double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 3; // Zmieniono obliczenia dla wielkości kafelków
@@ -156,4 +268,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
