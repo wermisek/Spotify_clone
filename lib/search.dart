@@ -52,26 +52,24 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.camera_alt), // Zmiana ikony na aparat
             onPressed: () {
-              // Przykładowa funkcja dla przycisku kamery
+              // Przykładowa funkcja dla przycisku aparatu
             },
           ),
         ],
       ),
-
       drawer: Drawer(
         child: Container(
-          color: Colors.black, // Tło całego panelu bocznego
+          color: Colors.black,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.black, // Tło nagłówka
+                  color: Colors.black,
                 ),
                 accountEmail: Text(''),
-                // pozostaw pusty tekst, ponieważ email jest wymagany
                 accountName: Row(
                   children: <Widget>[
                     Container(
@@ -82,7 +80,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         radius: 50.0,
                       ),
                     ),
-                    SizedBox(width: 10), // Dodaj odstęp o szerokości 10 pikseli
+                    SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +103,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   ],
                 ),
               ),
-
               ListTile(
                 leading: const Icon(
                   Icons.new_releases,
@@ -116,11 +113,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                  ), // Zwiększenie rozmiaru czcionki
+                  ),
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                 },
               ),
               ListTile(
@@ -133,11 +129,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                  ), // Zwiększenie rozmiaru czcionki
+                  ),
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
                 },
               ),
               ListTile(
@@ -150,80 +145,84 @@ class _SearchScreenState extends State<SearchScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                  ), // Zwiększenie rozmiaru czcionki
+                  ),
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
                 },
               ),
             ],
           ),
         ),
       ),
-
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.0),
-                color: Colors.grey[200],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
+                  color: Colors.grey[200],
+                ),
+                child: TextField(
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: 'What do you want to listen to?',
+                    hintStyle: TextStyle(
+                      color: Colors.black54,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(16.0),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
-              child: TextField(
+              SizedBox(height: 16.0),
+              Text(
+                'Explore your genres',
                 style: TextStyle(
-                  color: Colors.black, // Zmiana koloru tekstu na czarny
-                ),
-                decoration: InputDecoration(
-                  hintText: 'What do you want to listen to?',
-                  hintStyle: TextStyle(
-                    color: Colors.black54, // Zmiana koloru hinta na czarny
-                  ),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(16.0),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.black, // Zmiana koloru ikony na czarny
-                  ),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              'Explore your genres',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildTile('assets/#drain.gif', 'Genre 1'),
+                  SizedBox(width: 16.0),
+                  _buildTile('assets/experimental.gif', 'Genre 2'),
+                  SizedBox(width: 16.0),
+                  _buildTile('assets/rage.gif', 'Genre 3'),
+                ],
               ),
-            ),
-            SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildTile('assets/#drain.gif', 'Genre 1'),
-                SizedBox(width: 16.0),
-                _buildTile('assets/experimental.gif', 'Genre 2'),
-                SizedBox(width: 16.0),
-                _buildTile('assets/rage.gif', 'Genre 3'),
-              ],
-            ),
-
-            SizedBox(height: 16.0),
-            Text(
-              'Browse all',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 16.0),
+              Text(
+                'Browse all',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: 16.0),
+              _buildTilesRow(['Tile 1', 'Tile 2']),
+              SizedBox(height: 16.0),
+              _buildTilesRow(['Tile 3', 'Tile 4']),
+              SizedBox(height: 16.0),
+              _buildTilesRow(['Tile 5', 'Tile 6']),
+              SizedBox(height: 16.0),
+              _buildTilesRow(['Tile 7', 'Tile 8']),
+            ],
+          ),
         ),
       ),
-
-
-
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -243,20 +242,54 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  Widget _buildTilesRow(List<String> tileNames) {
+    double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 2;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _buildTilePlaceholder(tileSize, tileNames[0]),
+        SizedBox(width: 16.0),
+        _buildTilePlaceholder(tileSize, tileNames[1]),
+      ],
+    );
+  }
+
+  Widget _buildTilePlaceholder(double tileSize, String tileName) {
+    return Container(
+      width: tileSize,
+      height: tileSize / 2,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
+        color: Colors.grey[200],
+      ),
+      child: Center(
+        child: Text(
+          tileName,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildTile(String imagePath, String genreName) {
-    double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 3; // Zmieniono obliczenia dla wielkości kafelków
+    double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 3;
+
     return Container(
       width: tileSize,
       height: tileSize * 2,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
         color: Colors.grey[200],
       ),
       child: Stack(
         children: [
           Positioned.fill(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
               child: Image.asset(
                 imagePath,
                 fit: BoxFit.cover,
@@ -269,7 +302,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Text(
               genreName,
               style: TextStyle(
-                color: Colors.white, // Zmiana koloru napisu na biały
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
