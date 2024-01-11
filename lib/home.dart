@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'All' ? Colors.white : Colors.white,
+                    selectedButton == 'All' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'All'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'Music' ? Colors.white : Colors.white,
+                    selectedButton == 'Music' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Music'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -167,7 +167,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'Podcasts' ? Colors.white : Colors.white,
+                    selectedButton == 'Podcasts' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Podcasts'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -181,7 +181,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'Wrapped' ? Colors.white : Colors.white,
+                    selectedButton == 'Wrapped' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Wrapped'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -192,6 +192,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
+            const SizedBox(
+              height: 30,
+            ),
             Row(
               children: [
                 TextButton(
@@ -204,26 +207,37 @@ class _MyAppState extends State<MyApp> {
                       borderRadius: BorderRadius.circular(3),
                     ),
                     backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                    minimumSize: Size(100, 60),
+                    minimumSize: const Size(160, 60),
+                    maximumSize: const Size(190, 60),
                   ),
                   child: Row(
                     children: [
-                      Image.asset(
-                        'assets/liked.png',
-                        width: 40,
-                        height: 40,
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(3),
+                          bottomLeft: Radius.circular(3),
+                        ),
+                        child: Image.asset(
+                          'assets/liked.png',
+                          width: 60,
+                          height: 60,
+                        ),
                       ),
-                      SizedBox(width: 8),
-                      Text(
-                        'Przycisk',
-                        style: TextStyle(
-                          color: Colors.white,
+                      const SizedBox(width: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                            right: 0), // dostosuj margines z prawej strony
+                        child: Text(
+                          'Liked Songs',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 12),
                 TextButton(
                   onPressed: () {
                     // Tutaj dodaj logikę obsługi przycisku
@@ -234,20 +248,31 @@ class _MyAppState extends State<MyApp> {
                       borderRadius: BorderRadius.circular(3),
                     ),
                     backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                    minimumSize: Size(80, 40),
+                    minimumSize: const Size(160, 60),
+                    maximumSize: const Size(190, 60),
                   ),
                   child: Row(
                     children: [
-                      Image.asset(
-                        'assets/liked.png',
-                        width: 40,
-                        height: 40,
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(3),
+                          bottomLeft: Radius.circular(3),
+                        ),
+                        child: Image.asset(
+                          'assets/liked.png',
+                          width: 60,
+                          height: 60,
+                        ),
                       ),
-                      SizedBox(width: 8),
-                      Text(
-                        'Przycisk',
-                        style: TextStyle(
-                          color: Colors.white,
+                      const SizedBox(width: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                            right: 0), // dostosuj margines z prawej strony
+                        child: Text(
+                          'Liked Songs',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -255,44 +280,278 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Row(
+            Column(
               children: [
-                TextButton(
-                  onPressed: () {
-                    // Tutaj dodaj logikę obsługi przycisku
-                  },
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        // Tutaj dodaj logikę obsługi przycisku
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                        minimumSize: const Size(160, 60),
+                        maximumSize: const Size(190, 60),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(3),
+                              bottomLeft: Radius.circular(3),
+                            ),
+                            child: Image.asset(
+                              'assets/liked.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                                right: 0), // dostosuj margines z prawej strony
+                            child: Text(
+                              'Liked Songs',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                  ),
-                  child: Text(
-                    'Przycisk',
-                    style: TextStyle(
-                      color: Colors.white,
+                    const SizedBox(width: 12),
+                    TextButton(
+                      onPressed: () {
+                        // Tutaj dodaj logikę obsługi przycisku
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                        minimumSize: const Size(160, 60),
+                        maximumSize: const Size(190, 60),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(3),
+                              bottomLeft: Radius.circular(3),
+                            ),
+                            child: Image.asset(
+                              'assets/liked.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                                right: 0), // dostosuj margines z prawej strony
+                            child: Text(
+                              'Liked Songs',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-                SizedBox(width: 10),
-                TextButton(
-                  onPressed: () {
-                    // Tutaj dodaj logikę obsługi przycisku
-                  },
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                  ),
-                  child: Text(
-                    'Przycisk',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            // Tutaj dodaj logikę obsługi przycisku
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            backgroundColor:
+                                const Color.fromARGB(80, 80, 80, 80),
+                            minimumSize: const Size(160, 60),
+                            maximumSize: const Size(190, 60),
+                          ),
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(3),
+                                  bottomLeft: Radius.circular(3),
+                                ),
+                                child: Image.asset(
+                                  'assets/liked.png',
+                                  width: 60,
+                                  height: 60,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    right:
+                                        0), // dostosuj margines z prawej strony
+                                child: Text(
+                                  'Liked Songs',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        TextButton(
+                          onPressed: () {
+                            // Tutaj dodaj logikę obsługi przycisku
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            backgroundColor:
+                                const Color.fromARGB(80, 80, 80, 80),
+                            minimumSize: const Size(160, 60),
+                            maximumSize: const Size(190, 60),
+                          ),
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(3),
+                                  bottomLeft: Radius.circular(3),
+                                ),
+                                child: Image.asset(
+                                  'assets/liked.png',
+                                  width: 60,
+                                  height: 60,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    right:
+                                        0), // dostosuj margines z prawej strony
+                                child: Text(
+                                  'Liked Songs',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
+              ],
+            ),
+            Column(
+              children: [
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        // Tutaj dodaj logikę obsługi przycisku
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                        minimumSize: const Size(160, 60),
+                        maximumSize: const Size(190, 60),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(3),
+                              bottomLeft: Radius.circular(3),
+                            ),
+                            child: Image.asset(
+                              'assets/liked.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                                right: 0), // dostosuj margines z prawej strony
+                            child: Text(
+                              'Liked Songs',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    TextButton(
+                      onPressed: () {
+                        // Tutaj dodaj logikę obsługi przycisku
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        backgroundColor: const Color.fromARGB(80, 80, 80, 80),
+                        minimumSize: const Size(160, 60),
+                        maximumSize: const Size(190, 60),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(3),
+                              bottomLeft: Radius.circular(3),
+                            ),
+                            child: Image.asset(
+                              'assets/liked.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                                right: 0), // dostosuj margines z prawej strony
+                            child: Text(
+                              'Liked Songs',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ],
