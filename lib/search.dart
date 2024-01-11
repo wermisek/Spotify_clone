@@ -211,13 +211,13 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 4.0), // Zmniejszenie marginesu
               _buildTilesRow(['Tile 1', 'Tile 2']),
-              SizedBox(height: 16.0),
+              SizedBox(height: 4.0), // Zmniejszenie marginesu
               _buildTilesRow(['Tile 3', 'Tile 4']),
-              SizedBox(height: 16.0),
+              SizedBox(height: 4.0), // Zmniejszenie marginesu
               _buildTilesRow(['Tile 5', 'Tile 6']),
-              SizedBox(height: 16.0),
+              SizedBox(height: 4.0), // Zmniejszenie marginesu
               _buildTilesRow(['Tile 7', 'Tile 8']),
             ],
           ),
@@ -243,14 +243,19 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildTilesRow(List<String> tileNames) {
-    double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 2;
+    double tileSize = (MediaQuery.of(context).size.width - 28 - 20) / 2; // Zmniejszenie marginesu
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        _buildTilePlaceholder(tileSize, tileNames[0]),
-        SizedBox(width: 16.0),
-        _buildTilePlaceholder(tileSize, tileNames[1]),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildTilePlaceholder(tileSize, tileNames[0]),
+            SizedBox(width: 1.0), // Zmniejszenie marginesu
+            _buildTilePlaceholder(tileSize, tileNames[1]),
+          ],
+        ),
+        SizedBox(height: 13.0), // Zmniejszenie marginesu
       ],
     );
   }
@@ -276,7 +281,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildTile(String imagePath, String genreName) {
-    double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 3;
+    double tileSize = (MediaQuery.of(context).size.width - 40 - 24) / 3; // Zmniejszenie marginesu
 
     return Container(
       width: tileSize,
