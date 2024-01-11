@@ -212,13 +212,25 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow(['Tile 1', 'Tile 2']),
+              _buildTilesRow([
+                {'image': 'assets/Frame1.png', 'name': 'Tile 1'},
+                {'image': 'assets/Frame2.png', 'name': 'Tile 2'}
+              ]),
               SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow(['Tile 3', 'Tile 4']),
+              _buildTilesRow([
+                {'image': 'assets/Frame3.png', 'name': 'Tile 3'},
+                {'image': 'assets/Frame4.png', 'name': 'Tile 4'}
+              ]),
               SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow(['Tile 5', 'Tile 6']),
+              _buildTilesRow([
+                {'image': 'assets/Frame5.png', 'name': 'Tile 5'},
+                {'image': 'assets/Frame6.png', 'name': 'Tile 6'}
+              ]),
               SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow(['Tile 7', 'Tile 8']),
+              _buildTilesRow([
+                {'image': 'assets/Frame7.png', 'name': 'Tile 7'},
+                {'image': 'assets/Frame8.png', 'name': 'Tile 8'}
+              ]),
             ],
           ),
         ),
@@ -242,23 +254,21 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildTilesRow(List<String> tileNames) {
-    double tileSize = (MediaQuery.of(context).size.width - 28 - 20) / 2; // Zmniejszenie marginesu
+  Widget _buildTilesRow(List<Map<String, String>> tilesData) {
+  double tileSize = (MediaQuery.of(context).size.width - 28 - 20) / 2; // Zmniejszenie marginesu
 
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildTilePlaceholder(tileSize, tileNames[0]),
-            SizedBox(width: 1.0), // Zmniejszenie marginesu
-            _buildTilePlaceholder(tileSize, tileNames[1]),
-          ],
-        ),
-        SizedBox(height: 13.0), // Zmniejszenie marginesu
-      ],
-    );
-  }
+  return Column(
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: tilesData.map((tileData) {
+          return _buildTile(tileData['image']!, tileData['name']!);
+        }).toList(),
+      ),
+      SizedBox(height: 13.0), // Zmniejszenie marginesu
+    ],
+  );
+}
 
   Widget _buildTilePlaceholder(double tileSize, String tileName) {
     return Container(
@@ -281,39 +291,25 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildTile(String imagePath, String genreName) {
-    double tileSize = (MediaQuery.of(context).size.width - 40 - 24) / 3; // Zmniejszenie marginesu
+  double tileSize = (MediaQuery.of(context).size.width - 40 - 24) / 3; // Zmniejszenie marginesu
 
-    return Container(
-      width: tileSize,
-      height: tileSize * 2,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
-        color: Colors.grey[200],
+  return Container(
+    width: tileSize,
+    height: tileSize * 2,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
+      color: Colors.grey[200],
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
+      child: Image.asset(
+        imagePath,
+        width: tileSize, // Szerokość obrazu
+        height: tileSize * 2, // Wysokość obrazu
+        fit: BoxFit.cover, // Skalowanie obrazu, aby wypełnić cały obszar
       ),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 8.0,
-            left: 8.0,
-            child: Text(
-              genreName,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+    ),
+  );
+}
+
 }
