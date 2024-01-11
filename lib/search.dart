@@ -209,9 +209,21 @@ class _SearchScreenState extends State<SearchScreen> {
                 _buildTile('assets/rage.gif', 'Genre 3'),
               ],
             ),
+
+            SizedBox(height: 16.0),
+            Text(
+              'Browse all',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
+
+
+
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -230,7 +242,6 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
-
 
   Widget _buildTile(String imagePath, String genreName) {
     double tileSize = (MediaQuery.of(context).size.width - 40 - 32) / 3; // Zmieniono obliczenia dla wielkości kafelków
