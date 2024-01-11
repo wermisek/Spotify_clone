@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Spotify clone',
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black, // Zmienione tło całej aplikacji na czarne
+        scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
           color: Colors.black,
         ),
@@ -32,10 +32,10 @@ class PlaylistScreen extends StatefulWidget {
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
-      ScaffoldState>(); // Dodanie zmiennej _scaffoldKey
+      ScaffoldState>();
   LayoutType _layoutType = LayoutType.list;
   bool showPlaylists = true;
-  int selectedPlaylistIndex = -1; // Index of the selected playlist, initially set to -1 (no selection)
+  int selectedPlaylistIndex = -1;
 
   final List<Map<String, dynamic>> playlists = [
     {
@@ -100,9 +100,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     }
   ];
 
-  Color playlistsButtonColor = Colors.green; // Color for the Playlists button
+  Color playlistsButtonColor = Colors.green;
   Color artistsButtonColor = Colors.grey
-      .shade900; // Color for the Artists button
+      .shade900;
 
   @override
   Widget build(BuildContext context) {
@@ -131,23 +131,23 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              // Przykładowa funkcja dla przycisku kamery
+
             },
           ),
         ],
       ),
       drawer: Drawer(
         child: Container(
-          color: Colors.black, // Tło całego panelu bocznego
+          color: Colors.black,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.black, // Tło nagłówka
+                  color: Colors.black,
                 ),
                 accountEmail: Text(''),
-                // pozostaw pusty tekst, ponieważ email jest wymagany
+
                 accountName: Row(
                   children: <Widget>[
                     Container(
@@ -158,7 +158,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         radius: 50.0,
                       ),
                     ),
-                    SizedBox(width: 10), // Dodaj odstęp o szerokości 10 pikseli
+                    SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,11 +192,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                  ), // Zwiększenie rozmiaru czcionki
+                  ),
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
+
                 },
               ),
               ListTile(
@@ -209,11 +209,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                  ), // Zwiększenie rozmiaru czcionki
+                  ),
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Tutaj dodaj logikę dla wybrania opcji "Nowości"
+
                 },
               ),
               ListTile(
@@ -226,11 +226,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                  ), // Zwiększenie rozmiaru czcionki
+                  ),
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Tutaj dodaj logikę dla wybrania opcji "Ustawienia"
+
                 },
               ),
             ],
@@ -280,7 +280,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         showPlaylists = false;
                         artistsButtonColor = Colors.green;
                         playlistsButtonColor =
-                            Colors.grey.shade900; // lub inny odcień szarości
+                            Colors.grey.shade900;
 
 
                       });
@@ -346,7 +346,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     }
 
     return Container(
-      color: Colors.black, // Tło dla całej sekcji playlisty
+      color: Colors.black,
       child: _layoutType == LayoutType.list
           ? ListView.builder(
         shrinkWrap: true,
@@ -382,7 +382,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         print('Selected playlist: ${playlists[index]["title"]}');
       },
       child: Card(
-        color: Colors.black, // Tło karty ustawione na czarny kolor
+        color: Colors.black,
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(1.0),
@@ -394,7 +394,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors
-                        .black, // Tło kontenera z obrazem ustawione na czarny kolor
+                        .black,
                   ),
                   child: Image.asset(
                     playlists[index]["image"],
@@ -406,7 +406,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               Expanded(
                 child: Container(
                   color: Colors.black,
-                  // Tło kontenera rodzica kolumny ustawione na czarny kolor
+
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

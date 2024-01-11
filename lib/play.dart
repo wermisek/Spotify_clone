@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,6 +15,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 class MyMusicPlayer extends StatefulWidget {
   const MyMusicPlayer({Key? key}) : super(key: key);
@@ -71,12 +70,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
+
             },
           ),
         ],
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
+
           },
         ),
         title: const Text(
@@ -106,74 +107,83 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               ),
             ),
             const SizedBox(height: 20.0),
-            Expanded(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Nazwa utworu',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        Text(
-                          'Artysta',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Slider(
-                    value: _currentSliderValue,
-                    max: _maxSliderValue,
-                    onChanged: (double value) {
-                      setState(() {
-                        _currentSliderValue = value;
-                      });
-                    },
-                  ),
+                children: <Widget>[
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      IconButton(
-                        icon: const Icon(Icons.skip_previous),
-                        onPressed: _skipToPrevious,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Nazwa utworu',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8.0),
+                          Text(
+                            'Artysta',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: _isPlaying
-                            ? const Icon(Icons.pause, size: 36.0)
-                            : const Icon(Icons.play_arrow, size: 36.0),
-                        onPressed: _playPauseMusic,
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.skip_next),
-                        onPressed: _skipToNext,
+                      Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20.0),
                 ],
               ),
             ),
+            const SizedBox(height: 20.0),
+            Slider(
+              value: _currentSliderValue,
+              max: _maxSliderValue,
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.skip_previous),
+                  onPressed: _skipToPrevious,
+                ),
+                IconButton(
+                  icon: _isPlaying
+                      ? const Icon(Icons.pause, size: 36.0)
+                      : const Icon(Icons.play_arrow, size: 36.0),
+                  onPressed: _playPauseMusic,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.skip_next),
+                  onPressed: _skipToNext,
+                ),
+              ],
+            ),
+            const SizedBox(height: 20.0),
           ],
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 20.0),
+        padding: const EdgeInsets.only(bottom: 20.0, right: 20.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             IconButton(
               icon: const Icon(Icons.menu),
