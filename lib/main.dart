@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Spotify clone',
       theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black, // Zmienione tło całej aplikacji na czarne
         appBarTheme: AppBarTheme(
           color: Colors.black,
         ),
@@ -100,7 +101,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   ];
 
   Color playlistsButtonColor = Colors.green; // Color for the Playlists button
-  Color artistsButtonColor = Colors.black; // Color for the Artists button
+  Color artistsButtonColor = Colors.grey
+      .shade900; // Color for the Artists button
 
   @override
   Widget build(BuildContext context) {
@@ -241,7 +243,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            Container(
+              color: Colors.black,
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
@@ -250,19 +253,19 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                       setState(() {
                         showPlaylists = true;
                         playlistsButtonColor = Colors.green;
-                        artistsButtonColor = Colors.black;
+                        artistsButtonColor = Colors.grey.shade900;
                       });
                       print('Playlists');
                     },
                     elevation: 2.0,
                     fillColor: playlistsButtonColor,
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Playlists',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18.0,
+                          fontSize: 13.0,
                         ),
                       ),
                     ),
@@ -276,19 +279,22 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                       setState(() {
                         showPlaylists = false;
                         artistsButtonColor = Colors.green;
-                        playlistsButtonColor = Colors.black;
+                        playlistsButtonColor =
+                            Colors.grey.shade900; // lub inny odcień szarości
+
+
                       });
                       print('Artists');
                     },
                     elevation: 2.0,
                     fillColor: artistsButtonColor,
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Artists',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18.0,
+                          fontSize: 13.0,
                         ),
                       ),
                     ),
@@ -339,27 +345,30 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       );
     }
 
-    return _layoutType == LayoutType.list
-        ? ListView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: playlists.length,
-      itemBuilder: (context, index) {
-        return _buildPlaylistItem(index);
-      },
-    )
-        : GridView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
+    return Container(
+      color: Colors.black, // Tło dla całej sekcji playlisty
+      child: _layoutType == LayoutType.list
+          ? ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: playlists.length,
+        itemBuilder: (context, index) {
+          return _buildPlaylistItem(index);
+        },
+      )
+          : GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 2.0,
+          mainAxisSpacing: 2.0,
+        ),
+        itemCount: playlists.length,
+        itemBuilder: (context, index) {
+          return _buildPlaylistItem(index);
+        },
       ),
-      itemCount: playlists.length,
-      itemBuilder: (context, index) {
-        return _buildPlaylistItem(index);
-      },
     );
   }
 
@@ -373,42 +382,59 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         print('Selected playlist: ${playlists[index]["title"]}');
       },
       child: Card(
+        color: Colors.black, // Tło karty ustawione na czarny kolor
         clipBehavior: Clip.antiAlias,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(1.0),
           child: Row(
             children: <Widget>[
               SizedBox(
-                width: 60,
-                height: 60,
-                child: Image.asset(
-                  playlists[index]["image"],
-                  fit: BoxFit.cover,
+                width: 55,
+                height: 55,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors
+                        .black, // Tło kontenera z obrazem ustawione na czarny kolor
+                  ),
+                  child: Image.asset(
+                    playlists[index]["image"],
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              SizedBox(width: 16),
+              SizedBox(width: 13),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      playlists[index]["title"],
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: isSelected ? Colors.green : Colors.white,
+                child: Container(
+                  color: Colors.black,
+                  // Tło kontenera rodzica kolumny ustawione na czarny kolor
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2.0),
+                        child: Text(
+                          playlists[index]["title"],
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: isSelected ? Colors.green : Colors.white,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
                       ),
-                      textAlign: TextAlign.start,
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      playlists[index]["desc"],
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: Text(
+                          playlists[index]["desc"],
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
                       ),
-                      textAlign: TextAlign.start,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
