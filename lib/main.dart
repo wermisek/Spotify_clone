@@ -349,6 +349,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
+  //kolejny kom dla zabawy lmao
   Widget _buildPlaylistItem(int index) {
     bool isSelected = selectedPlaylistIndex == index;
     return GestureDetector(
