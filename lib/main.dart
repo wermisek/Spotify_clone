@@ -1,12 +1,9 @@
 
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(MyApp());
 }
-
 enum LayoutType { list, grid }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,21 +19,16 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class PlaylistScreen extends StatefulWidget {
   @override
   _PlaylistScreenState createState() => _PlaylistScreenState();
 }
-
-
-
 class _PlaylistScreenState extends State<PlaylistScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
       ScaffoldState>();
   LayoutType _layoutType = LayoutType.list;
   bool showPlaylists = true;
   int selectedPlaylistIndex = -1;
-
   final List<Map<String, dynamic>> playlists = [
     {
       "title": "Liked songs",
@@ -99,11 +91,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/plus.jpg",
     }
   ];
-
   Color playlistsButtonColor = Colors.green;
   Color artistsButtonColor = Colors.grey
       .shade900;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,7 +121,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-
             },
           ),
         ],
@@ -147,7 +136,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   color: Colors.black,
                 ),
                 accountEmail: Text(''),
-
                 accountName: Row(
                   children: <Widget>[
                     Container(
@@ -181,7 +169,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ],
                 ),
               ),
-
               ListTile(
                 leading: const Icon(
                   Icons.new_releases,
@@ -196,7 +183,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-
                 },
               ),
               ListTile(
@@ -213,7 +199,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-
                 },
               ),
               ListTile(
@@ -230,15 +215,12 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-
                 },
               ),
             ],
           ),
         ),
       ),
-
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,8 +263,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         artistsButtonColor = Colors.green;
                         playlistsButtonColor =
                             Colors.grey.shade900;
-
-
                       });
                       print('Artists');
                     },
@@ -328,13 +308,12 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_music),
-            label: 'Library',
+            label: 'Your library',
           ),
         ],
       ),
     );
   }
-
   Widget _buildPlaylist() {
     if (!showPlaylists) {
       return Center(
@@ -344,7 +323,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         ),
       );
     }
-
     return Container(
       color: Colors.black,
       child: _layoutType == LayoutType.list
@@ -371,7 +349,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
-
   Widget _buildPlaylistItem(int index) {
     bool isSelected = selectedPlaylistIndex == index;
     return GestureDetector(
@@ -406,7 +383,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               Expanded(
                 child: Container(
                   color: Colors.black,
-
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
