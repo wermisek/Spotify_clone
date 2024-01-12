@@ -52,7 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.camera_alt), // Zmiana ikony na aparat
+            icon: Icon(Icons.camera_alt),
             onPressed: () {
               // Przykładowa funkcja dla przycisku aparatu
             },
@@ -163,7 +163,7 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
+                  borderRadius: BorderRadius.circular(6.0),
                   color: Colors.grey[200],
                 ),
                 child: TextField(
@@ -211,23 +211,23 @@ class _SearchScreenState extends State<SearchScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow([
+              SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame1.png', 'name': 'Tile 1'},
                 {'image': 'assets/Frame2.png', 'name': 'Tile 2'}
               ]),
-              SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow([
+              SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame3.png', 'name': 'Tile 3'},
                 {'image': 'assets/Frame4.png', 'name': 'Tile 4'}
               ]),
-              SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow([
+              SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame5.png', 'name': 'Tile 5'},
                 {'image': 'assets/Frame6.png', 'name': 'Tile 6'}
               ]),
-              SizedBox(height: 4.0), // Zmniejszenie marginesu
-              _buildTilesRow([
+              SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame7.png', 'name': 'Tile 7'},
                 {'image': 'assets/Frame8.png', 'name': 'Tile 8'}
               ]),
@@ -255,61 +255,118 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildTilesRow(List<Map<String, String>> tilesData) {
-  double tileSize = (MediaQuery.of(context).size.width - 28 - 20) / 2; // Zmniejszenie marginesu
+    return Row(
+      children: tilesData.map((tileData) {
+        return _buildTile(tileData['image']!, tileData['name']!);
+      }).toList(),
+    );
+  }
 
-  return Column(
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: tilesData.map((tileData) {
-          return _buildTile(tileData['image']!, tileData['name']!);
-        }).toList(),
-      ),
-      SizedBox(height: 13.0), // Zmniejszenie marginesu
-    ],
-  );
-}
+  Widget _buildTilesRowBrowseAll(List<Map<String, String>> tilesData) {
+    return Row(
+      children: tilesData.map((tileData) {
+        return _buildTileBrowseAll(tileData['image']!, tileData['name']!);
+      }).toList(),
+    );
+  }
 
-  Widget _buildTilePlaceholder(double tileSize, String tileName) {
+  Widget _buildTileBrowseAll(String imagePath, String tileName) {
+    double tileWidth = 172;
+    double tileHeight = 95;
+
     return Container(
-      width: tileSize,
-      height: tileSize / 2,
+      width: tileWidth,
+      height: tileHeight,
+      margin: EdgeInsets.only(right:8.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
+        borderRadius: BorderRadius.circular(6.0),
         color: Colors.grey[200],
       ),
-      child: Center(
-        child: Text(
-          tileName,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(6.0),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              imagePath,
+              width: tileWidth,
+              height: tileHeight,
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+                  ),
+                ),
+                child: Text(
+                  tileName,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildTile(String imagePath, String genreName) {
-  double tileSize = (MediaQuery.of(context).size.width - 40 - 24) / 3; // Zmniejszenie marginesu
+  Widget _buildTile(String imagePath, String tileName) {
+    double tileSize = (MediaQuery.of(context).size.width - 40 - 24) / 3;
 
-  return Container(
-    width: tileSize,
-    height: tileSize * 2,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
-      color: Colors.grey[200],
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(6.0), // Zmniejszenie promienia zaokrąglenia
-      child: Image.asset(
-        imagePath,
-        width: tileSize, // Szerokość obrazu
-        height: tileSize * 2, // Wysokość obrazu
-        fit: BoxFit.cover, // Skalowanie obrazu, aby wypełnić cały obszar
+    return Container(
+      width: tileSize,
+      height: tileSize * 2,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6.0),
+        color: Colors.grey[200],
       ),
-    ),
-  );
-}
-
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(6.0),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              imagePath,
+              width: tileSize,
+              height: tileSize * 2,
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+                  ),
+                ),
+                child: Text(
+                  tileName,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
