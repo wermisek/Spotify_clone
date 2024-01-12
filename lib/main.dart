@@ -358,6 +358,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         });
         print('Selected playlist: ${playlists[index]["title"]}');
       },
+      //komentarz bo pustka lmao
       child: Card(
         color: Colors.black,
         clipBehavior: Clip.antiAlias,
