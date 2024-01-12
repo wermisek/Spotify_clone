@@ -314,6 +314,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
+  //kocham altki x2
   Widget _buildPlaylist() {
     if (!showPlaylists) {
       return Center(
@@ -323,6 +324,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         ),
       );
     }
+    //kocham altki
     return Container(
       color: Colors.black,
       child: _layoutType == LayoutType.list
@@ -349,6 +351,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
+  //kolejny kom dla zabawy lmao
   Widget _buildPlaylistItem(int index) {
     bool isSelected = selectedPlaylistIndex == index;
     return GestureDetector(
@@ -358,6 +361,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         });
         print('Selected playlist: ${playlists[index]["title"]}');
       },
+      //komentarz bo pustka lmao
       child: Card(
         color: Colors.black,
         clipBehavior: Clip.antiAlias,
@@ -420,3 +424,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     );
   }
 }
+
+
+
