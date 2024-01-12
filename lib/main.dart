@@ -314,6 +314,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
+  //kocham altki x2
   Widget _buildPlaylist() {
     if (!showPlaylists) {
       return Center(
