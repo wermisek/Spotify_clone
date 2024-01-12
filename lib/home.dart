@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                    selectedButton == 'All' ? Colors.white : Colors.white,
+                selectedButton == 'All' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'All'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                    selectedButton == 'Music' ? Colors.white : Colors.white,
+                selectedButton == 'Music' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Music'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -167,7 +167,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                    selectedButton == 'Podcasts' ? Colors.white : Colors.white,
+                selectedButton == 'Podcasts' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Podcasts'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -181,7 +181,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                    selectedButton == 'Wrapped' ? Colors.white : Colors.white,
+                selectedButton == 'Wrapped' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Wrapped'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -383,7 +383,7 @@ class _MyAppState extends State<MyApp> {
                               borderRadius: BorderRadius.circular(3),
                             ),
                             backgroundColor:
-                                const Color.fromARGB(80, 80, 80, 80),
+                            const Color.fromARGB(80, 80, 80, 80),
                             minimumSize: const Size(160, 60),
                             maximumSize: const Size(190, 60),
                           ),
@@ -404,7 +404,7 @@ class _MyAppState extends State<MyApp> {
                               const Padding(
                                 padding: EdgeInsets.only(
                                     right:
-                                        0), // dostosuj margines z prawej strony
+                                    0), // dostosuj margines z prawej strony
                                 child: Text(
                                   'Liked Songs',
                                   style: TextStyle(
@@ -426,7 +426,7 @@ class _MyAppState extends State<MyApp> {
                               borderRadius: BorderRadius.circular(3),
                             ),
                             backgroundColor:
-                                const Color.fromARGB(80, 80, 80, 80),
+                            const Color.fromARGB(80, 80, 80, 80),
                             minimumSize: const Size(160, 60),
                             maximumSize: const Size(190, 60),
                           ),
@@ -447,7 +447,7 @@ class _MyAppState extends State<MyApp> {
                               const Padding(
                                 padding: EdgeInsets.only(
                                     right:
-                                        0), // dostosuj margines z prawej strony
+                                    0), // dostosuj margines z prawej strony
                                 child: Text(
                                   'Liked Songs',
                                   style: TextStyle(
@@ -553,6 +553,26 @@ class _MyAppState extends State<MyApp> {
                   ],
                 )
               ],
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.black,
+          unselectedItemColor: const Color.fromARGB(140, 140, 140, 140),
+          selectedItemColor: Colors.white,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.library_music),
+              label: 'Your Library',
             ),
           ],
         ),
