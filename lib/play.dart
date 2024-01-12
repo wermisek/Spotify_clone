@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyMusicPlayer extends StatefulWidget {
   const MyMusicPlayer({Key? key}) : super(key: key);
 
@@ -31,6 +30,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
 
   void _playPauseMusic() {
     if (_isPlaying) {
+      // Add logic for pausing music
     } else {
       _playMusic();
     }
@@ -70,14 +70,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
-
+              // Add your onPressed logic here
             },
           ),
         ],
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
-
+            // Add your onPressed logic here
           },
         ),
         title: const Text(
@@ -107,8 +107,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               ),
             ),
             const SizedBox(height: 20.0),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -135,11 +135,28 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Icon(
-                          Icons.check,
-                          color: Colors.green,
+                      GestureDetector(
+                        onTap: () {
+                          // Add your onTap logic here
+                          setState(() {
+                            _isPlaying = true;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          width: 40.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _isPlaying ? Colors.green : Colors.transparent,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              _isPlaying ? Icons.check : Icons.add,
+                              color: _isPlaying ? Colors.white : Colors.grey,
+                              size: 20.0,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -188,6 +205,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             IconButton(
               icon: const Icon(Icons.menu),
               onPressed: () {
+                // Add your onPressed logic here
               },
             ),
           ],
