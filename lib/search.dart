@@ -196,11 +196,11 @@ class _SearchScreenState extends State<SearchScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildTile('assets/#drain.gif', 'Genre 1'),
+                  _buildTile('assets/#drain.gif', 'Drain'),
                   SizedBox(width: 16.0),
-                  _buildTile('assets/experimental.gif', 'Genre 2'),
+                  _buildTile('assets/experimental.gif', 'Experimental'),
                   SizedBox(width: 16.0),
-                  _buildTile('assets/rage.gif', 'Genre 3'),
+                  _buildTile('assets/rage.gif', 'Rage'),
                 ],
               ),
               SizedBox(height: 16.0),
@@ -213,23 +213,23 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame1.png', 'name': 'Tile 1'},
-                {'image': 'assets/Frame2.png', 'name': 'Tile 2'}
+                {'image': 'assets/Frame1.png', 'name': ''},
+                {'image': 'assets/Frame2.png', 'name': ''}
               ]),
               SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame3.png', 'name': 'Tile 3'},
-                {'image': 'assets/Frame4.png', 'name': 'Tile 4'}
+                {'image': 'assets/Frame3.png', 'name': ''},
+                {'image': 'assets/Frame4.png', 'name': ''}
               ]),
               SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame5.png', 'name': 'Tile 5'},
-                {'image': 'assets/Frame6.png', 'name': 'Tile 6'}
+                {'image': 'assets/Frame5.png', 'name': ''},
+                {'image': 'assets/Frame6.png', 'name': ''}
               ]),
               SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame7.png', 'name': 'Tile 7'},
-                {'image': 'assets/Frame8.png', 'name': 'Tile 8'}
+                {'image': 'assets/Frame7.png', 'name': ''},
+                {'image': 'assets/Frame8.png', 'name': ''}
               ]),
             ],
           ),
@@ -370,3 +370,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
