@@ -554,8 +554,49 @@ class _MyAppState extends State<MyApp> {
                 )
               ],
             ),
+            SizedBox(height: 25.0,),
+            Row(
+              children: [
+                Text(
+                  "Made For Us",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 25.0,),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/blend.jpg',  // Zmień ścieżkę do odpowiedniego pliku z obrazem
+                      width: 180,  // Dostosuj szerokość obrazka
+                      height: 180,  // Dostosuj wysokość obrazka
+                    ),
+                    const SizedBox(height: 8),  // Dostosuj dowolny odstęp między obrazkiem a tekstem
+                    Text(
+                      "PrzemekBajjajo + grzesio",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      "Playlist • A blend of",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
           ],
         ),
+
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.black,
           unselectedItemColor: const Color.fromARGB(140, 140, 140, 140),
