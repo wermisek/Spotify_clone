@@ -259,7 +259,7 @@ class _MyAppState extends State<MyApp> {
                           bottomLeft: Radius.circular(3),
                         ),
                         child: Image.asset(
-                          'assets/liked.png',
+                          'assets/cztery.jpg',
                           width: 60,
                           height: 60,
                         ),
@@ -269,7 +269,7 @@ class _MyAppState extends State<MyApp> {
                         padding: EdgeInsets.only(
                             right: 0), // dostosuj margines z prawej strony
                         child: Text(
-                          'Liked Songs',
+                          'Playlista 1',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -306,7 +306,7 @@ class _MyAppState extends State<MyApp> {
                               bottomLeft: Radius.circular(3),
                             ),
                             child: Image.asset(
-                              'assets/liked.png',
+                              'assets/dziewiec.jpg',
                               width: 60,
                               height: 60,
                             ),
@@ -316,7 +316,7 @@ class _MyAppState extends State<MyApp> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Liked Songs',
+                              'Playlista 2',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -347,7 +347,7 @@ class _MyAppState extends State<MyApp> {
                               bottomLeft: Radius.circular(3),
                             ),
                             child: Image.asset(
-                              'assets/liked.png',
+                              'assets/jeden.jpg',
                               width: 60,
                               height: 60,
                             ),
@@ -357,7 +357,7 @@ class _MyAppState extends State<MyApp> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Liked Songs',
+                              'Playlista 3',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -395,7 +395,7 @@ class _MyAppState extends State<MyApp> {
                                   bottomLeft: Radius.circular(3),
                                 ),
                                 child: Image.asset(
-                                  'assets/liked.png',
+                                  'assets/trzy.jpeg',
                                   width: 60,
                                   height: 60,
                                 ),
@@ -406,7 +406,7 @@ class _MyAppState extends State<MyApp> {
                                     right:
                                     0), // dostosuj margines z prawej strony
                                 child: Text(
-                                  'Liked Songs',
+                                  'Playlista 4',
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),
@@ -438,7 +438,7 @@ class _MyAppState extends State<MyApp> {
                                   bottomLeft: Radius.circular(3),
                                 ),
                                 child: Image.asset(
-                                  'assets/liked.png',
+                                  'assets/szesc.jpeg',
                                   width: 60,
                                   height: 60,
                                 ),
@@ -449,7 +449,7 @@ class _MyAppState extends State<MyApp> {
                                     right:
                                     0), // dostosuj margines z prawej strony
                                 child: Text(
-                                  'Liked Songs',
+                                  'Playlista 5',
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),
@@ -490,7 +490,7 @@ class _MyAppState extends State<MyApp> {
                               bottomLeft: Radius.circular(3),
                             ),
                             child: Image.asset(
-                              'assets/liked.png',
+                              'assets/siedem.jpeg',
                               width: 60,
                               height: 60,
                             ),
@@ -500,7 +500,7 @@ class _MyAppState extends State<MyApp> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Liked Songs',
+                              'Playlista 6',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -531,7 +531,7 @@ class _MyAppState extends State<MyApp> {
                               bottomLeft: Radius.circular(3),
                             ),
                             child: Image.asset(
-                              'assets/liked.png',
+                              'assets/dwa.jpg',
                               width: 60,
                               height: 60,
                             ),
@@ -541,7 +541,7 @@ class _MyAppState extends State<MyApp> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Liked Songs',
+                              'Playlista 6',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
