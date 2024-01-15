@@ -3,6 +3,16 @@ import 'dart:async';
 
 void main() => runApp(const MyApp());
 
+class Song {
+  final String title;
+  final String artist;
+
+  Song({
+    required this.title,
+    required this.artist,
+  });
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -31,6 +41,16 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   bool _isLiked = false;
   late Timer _timer;
 
+  List<Song> songs = [
+    Song(title: 'Song 1', artist: 'Artist 1'),
+    Song(title: 'Song 2', artist: 'Artist 2'),
+    Song(title: 'Song 3', artist: 'Artist 3'),
+    Song(title: 'Song 4', artist: 'Artist 4'),
+    Song(title: 'Song 5', artist: 'Artist 5'),
+  ];
+
+  int _currentSongIndex = 0;
+
   void _playPauseMusic() {
     if (_isPlaying) {
       _resetButton();
@@ -48,21 +68,20 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
       setState(() {
-        if (_currentSliderValue < _maxSliderValue - 0.1) {
+        if (_currentSliderValue < _maxSliderValue) {
           _currentSliderValue += 0.1;
         } else {
           _resetButton();
-          timer.cancel();
+          _skipToNext();
         }
       });
     });
 
     Future.delayed(duration, () {
       _resetButton();
-      _timer.cancel();
+      _skipToNext();
     });
   }
-
 
   void _resetButton() {
     setState(() {
@@ -73,14 +92,26 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
 
   void _skipToPrevious() {
     setState(() {
-      _currentSliderValue = (_currentSliderValue - 0.1).clamp(0.0, _maxSliderValue);
+      _currentSliderValue = 0.0;
     });
+
+    if (_currentSongIndex > 0) {
+      setState(() {
+        _currentSongIndex--;
+      });
+    }
   }
 
   void _skipToNext() {
     setState(() {
-      _currentSliderValue = (_currentSliderValue + 0.1).clamp(0.0, _maxSliderValue);
+      _currentSliderValue = 0.0;
     });
+
+    if (_currentSongIndex < songs.length - 1) {
+      setState(() {
+        _currentSongIndex++;
+      });
+    }
   }
 
   void _toggleLike() {
@@ -149,7 +180,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Nazwa utworu',
+                            songs[_currentSongIndex].title,
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -157,7 +188,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           ),
                           SizedBox(height: 8.0),
                           Text(
-                            'Artysta',
+                            songs[_currentSongIndex].artist,
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.grey,
@@ -192,7 +223,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             ),
             const SizedBox(height: 20.0),
             Slider(
-              value: _currentSliderValue,
+              value: _currentSliderValue <= _maxSliderValue ? _currentSliderValue : _maxSliderValue,
               max: _maxSliderValue,
               onChanged: (double value) {
                 setState(() {
