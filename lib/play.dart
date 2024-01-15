@@ -40,7 +40,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
   double _maxSliderValue = 1.0; // Przesunięcie do pola klasy, aby uzyskać dostęp z innych metod
   bool _isPlaying = false;
-  bool _isLiked = false;
   late Timer _timer;
 
   List<Song> songs = [
@@ -50,6 +49,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     Song(title: 'Song 4', artist: 'Artist 4', duration: 30.0),
     Song(title: 'Song 5', artist: 'Artist 5', duration: 18.0),
   ];
+
+  List<bool> _likedSongs = List.filled(5, false); // Lista przechowująca stan polubienia dla każdej piosenki
 
   int _currentSongIndex = 0;
 
@@ -129,7 +130,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
 
   void _toggleLike() {
     setState(() {
-      _isLiked = !_isLiked;
+      _likedSongs[_currentSongIndex] = !_likedSongs[_currentSongIndex];
     });
   }
 
@@ -218,12 +219,12 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           height: 40.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _isLiked ? Colors.green : Colors.transparent,
+                            color: _likedSongs[_currentSongIndex] ? Colors.green : Colors.transparent,
                           ),
                           child: Center(
                             child: Icon(
-                              _isLiked ? Icons.check : Icons.add,
-                              color: _isLiked ? Colors.white : Colors.grey,
+                              _likedSongs[_currentSongIndex] ? Icons.check : Icons.add,
+                              color: _likedSongs[_currentSongIndex] ? Colors.white : Colors.grey,
                               size: 20.0,
                             ),
                           ),
