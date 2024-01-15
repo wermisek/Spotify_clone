@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() => runApp(const MyApp());
 
@@ -28,13 +29,12 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   final double _maxSliderValue = 1.0;
   bool _isPlaying = false;
   bool _isLiked = false;
+  late Timer _timer;
 
   void _playPauseMusic() {
     if (_isPlaying) {
-
       _resetButton();
     } else {
-
       _playMusic();
     }
   }
@@ -46,17 +46,28 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       _isPlaying = true;
     });
 
-    Future.delayed(duration, () {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
       setState(() {
-        _currentSliderValue = _maxSliderValue;
-        _isPlaying = false;
+        if (_currentSliderValue < _maxSliderValue - 0.1) {
+          _currentSliderValue += 0.1;
+        } else {
+          _resetButton();
+          timer.cancel();
+        }
       });
     });
+
+    Future.delayed(duration, () {
+      _resetButton();
+      _timer.cancel();
+    });
   }
+
 
   void _resetButton() {
     setState(() {
       _isPlaying = false;
+      _currentSliderValue = 0.0;
     });
   }
 
@@ -134,7 +145,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -227,5 +238,11 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 }
