@@ -554,8 +554,8 @@ class _MyAppState extends State<MyApp> {
                 )
               ],
             ),
-            SizedBox(height: 25.0,),
-            Row(
+            const SizedBox(height: 25.0,),
+            const Row(
               children: [
                 Text(
                   "Made For Us",
@@ -567,7 +567,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
-            SizedBox(height: 25.0,),
+            const SizedBox(height: 25.0,),
             Row(
               children: [
                 Column(
@@ -578,13 +578,13 @@ class _MyAppState extends State<MyApp> {
                       height: 180,  // Dostosuj wysokość obrazka
                     ),
                     const SizedBox(height: 8),  // Dostosuj dowolny odstęp między obrazkiem a tekstem
-                    Text(
+                    const Text(
                       "PrzemekBajjajo + grzesio",
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Playlist • A blend of",
                       style: TextStyle(
                         color: Colors.grey,
