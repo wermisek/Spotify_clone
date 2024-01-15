@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() => runApp(const MyApp());
+
+class Song {
+  final String title;
+  final String artist;
+  final double duration;
+
+  Song({
+    required this.title,
+    required this.artist,
+    required this.duration,
+  });
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,37 +38,98 @@ class MyMusicPlayer extends StatefulWidget {
 
 class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
-  final double _maxSliderValue = 1.0;
+  double _maxSliderValue = 1.0;
   bool _isPlaying = false;
+  late Timer _timer;
+
+  List<Song> songs = [
+    Song(title: 'Song 1', artist: 'Artist 1', duration: 20.0),
+    Song(title: 'Song 2', artist: 'Artist 2', duration: 25.0),
+    Song(title: 'Song 3', artist: 'Artist 3', duration: 15.0),
+    Song(title: 'Song 4', artist: 'Artist 4', duration: 30.0),
+    Song(title: 'Song 5', artist: 'Artist 5', duration: 18.0),
+  ];
+
+  final List<bool> _likedSongs = List.filled(5, false);
+
+  int _currentSongIndex = 0;
 
   void _playPauseMusic() {
     if (_isPlaying) {
-      // Add logic for pausing music
+      _stopMusic();
     } else {
       _playMusic();
     }
   }
 
   void _playMusic() {
-    const duration = Duration(seconds: 10);
+    final double duration = songs[_currentSongIndex].duration;
 
-    Future.delayed(duration, () {
+    setState(() {
+      _isPlaying = true;
+      _maxSliderValue = duration;
+    });
+
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
       setState(() {
-        _currentSliderValue = _maxSliderValue;
-        _isPlaying = false;
+        if (_currentSliderValue < _maxSliderValue) {
+          _currentSliderValue += 0.1;
+        } else {
+          _resetButton();
+          _skipToNext();
+        }
       });
+    });
+
+    Future.delayed(Duration(seconds: duration.toInt()), () {
+      _resetButton();
+      _skipToNext();
+    });
+  }
+
+  void _stopMusic() {
+    _timer.cancel();
+    _resetButton();
+  }
+
+  void _resetButton() {
+    setState(() {
+      _isPlaying = false;
+      // _currentSliderValue = 0.0;
     });
   }
 
   void _skipToPrevious() {
     setState(() {
-      _currentSliderValue = (_currentSliderValue - 0.1).clamp(0.0, _maxSliderValue);
+      _currentSliderValue = 0.0;
     });
+
+    if (_currentSongIndex > 0) {
+      setState(() {
+        _currentSongIndex--;
+      });
+    }
   }
 
   void _skipToNext() {
     setState(() {
-      _currentSliderValue = (_currentSliderValue + 0.1).clamp(0.0, _maxSliderValue);
+      _currentSliderValue = 0.0;
+    });
+
+    if (_currentSongIndex < songs.length - 1) {
+      setState(() {
+        _currentSongIndex++;
+      });
+    } else {
+      setState(() {
+        _currentSongIndex = 0;
+      });
+    }
+  }
+
+  void _toggleLike() {
+    setState(() {
+      _likedSongs[_currentSongIndex] = !_likedSongs[_currentSongIndex];
     });
   }
 
@@ -119,16 +193,16 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Nazwa utworu',
-                            style: TextStyle(
+                            songs[_currentSongIndex].title,
+                            style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
-                            'Artysta',
-                            style: TextStyle(
+                            songs[_currentSongIndex].artist,
+                            style: const TextStyle(
                               fontSize: 16.0,
                               color: Colors.grey,
                             ),
@@ -137,23 +211,19 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Add your onTap logic here
-                          setState(() {
-                            _isPlaying = true;
-                          });
+                          _toggleLike();
                         },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
+                        child: Container(
                           width: 40.0,
                           height: 40.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _isPlaying ? Colors.green : Colors.transparent,
+                            color: _likedSongs[_currentSongIndex] ? Colors.green : Colors.transparent,
                           ),
                           child: Center(
                             child: Icon(
-                              _isPlaying ? Icons.check : Icons.add,
-                              color: _isPlaying ? Colors.white : Colors.grey,
+                              _likedSongs[_currentSongIndex] ? Icons.check : Icons.add,
+                              color: _likedSongs[_currentSongIndex] ? Colors.white : Colors.grey,
                               size: 20.0,
                             ),
                           ),
@@ -166,7 +236,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             ),
             const SizedBox(height: 20.0),
             Slider(
-              value: _currentSliderValue,
+              value: _currentSliderValue <= _maxSliderValue ? _currentSliderValue : _maxSliderValue,
               max: _maxSliderValue,
               onChanged: (double value) {
                 setState(() {
@@ -212,5 +282,11 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 }
