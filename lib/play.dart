@@ -6,7 +6,7 @@ void main() => runApp(const MyApp());
 class Song {
   final String title;
   final String artist;
-  final double duration; // Dodano czas trwania piosenki w sekundach
+  final double duration;
 
   Song({
     required this.title,
@@ -38,7 +38,7 @@ class MyMusicPlayer extends StatefulWidget {
 
 class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
-  double _maxSliderValue = 1.0; // Przesunięcie do pola klasy, aby uzyskać dostęp z innych metod
+  double _maxSliderValue = 1.0;
   bool _isPlaying = false;
   late Timer _timer;
 
@@ -50,7 +50,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     Song(title: 'Song 5', artist: 'Artist 5', duration: 18.0),
   ];
 
-  List<bool> _likedSongs = List.filled(5, false); // Lista przechowująca stan polubienia dla każdej piosenki
+  final List<bool> _likedSongs = List.filled(5, false);
 
   int _currentSongIndex = 0;
 
@@ -67,7 +67,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
 
     setState(() {
       _isPlaying = true;
-      _maxSliderValue = duration; // Aktualizacja maksymalnej wartości slidera
+      _maxSliderValue = duration;
     });
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
@@ -95,7 +95,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   void _resetButton() {
     setState(() {
       _isPlaying = false;
-      // _currentSliderValue = 0.0; // Usunięcie zerowania, aby zachować aktualny postęp
+      // _currentSliderValue = 0.0;
     });
   }
 
@@ -121,7 +121,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         _currentSongIndex++;
       });
     } else {
-      // Jeżeli to ostatni utwór, wróć do pierwszego
       setState(() {
         _currentSongIndex = 0;
       });
@@ -195,15 +194,15 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         children: [
                           Text(
                             songs[_currentSongIndex].title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             songs[_currentSongIndex].artist,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                               color: Colors.grey,
                             ),
