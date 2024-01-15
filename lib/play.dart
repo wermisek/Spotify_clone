@@ -6,10 +6,12 @@ void main() => runApp(const MyApp());
 class Song {
   final String title;
   final String artist;
+  final double duration; // Dodano czas trwania piosenki w sekundach
 
   Song({
     required this.title,
     required this.artist,
+    required this.duration,
   });
 }
 
@@ -36,34 +38,35 @@ class MyMusicPlayer extends StatefulWidget {
 
 class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
-  final double _maxSliderValue = 1.0;
+  double _maxSliderValue = 1.0; // Przesunięcie do pola klasy, aby uzyskać dostęp z innych metod
   bool _isPlaying = false;
   bool _isLiked = false;
   late Timer _timer;
 
   List<Song> songs = [
-    Song(title: 'Song 1', artist: 'Artist 1'),
-    Song(title: 'Song 2', artist: 'Artist 2'),
-    Song(title: 'Song 3', artist: 'Artist 3'),
-    Song(title: 'Song 4', artist: 'Artist 4'),
-    Song(title: 'Song 5', artist: 'Artist 5'),
+    Song(title: 'Song 1', artist: 'Artist 1', duration: 20.0),
+    Song(title: 'Song 2', artist: 'Artist 2', duration: 25.0),
+    Song(title: 'Song 3', artist: 'Artist 3', duration: 15.0),
+    Song(title: 'Song 4', artist: 'Artist 4', duration: 30.0),
+    Song(title: 'Song 5', artist: 'Artist 5', duration: 18.0),
   ];
 
   int _currentSongIndex = 0;
 
   void _playPauseMusic() {
     if (_isPlaying) {
-      _resetButton();
+      _stopMusic();
     } else {
       _playMusic();
     }
   }
 
   void _playMusic() {
-    const duration = Duration(seconds: 10);
+    final double duration = songs[_currentSongIndex].duration;
 
     setState(() {
       _isPlaying = true;
+      _maxSliderValue = duration; // Aktualizacja maksymalnej wartości slidera
     });
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
@@ -77,16 +80,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       });
     });
 
-    Future.delayed(duration, () {
+    Future.delayed(Duration(seconds: duration.toInt()), () {
       _resetButton();
       _skipToNext();
     });
   }
 
+  void _stopMusic() {
+    _timer.cancel();
+    _resetButton();
+  }
+
   void _resetButton() {
     setState(() {
       _isPlaying = false;
-      _currentSliderValue = 0.0;
+      // _currentSliderValue = 0.0; // Usunięcie zerowania, aby zachować aktualny postęp
     });
   }
 
@@ -110,6 +118,11 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     if (_currentSongIndex < songs.length - 1) {
       setState(() {
         _currentSongIndex++;
+      });
+    } else {
+      // Jeżeli to ostatni utwór, wróć do pierwszego
+      setState(() {
+        _currentSongIndex = 0;
       });
     }
   }
