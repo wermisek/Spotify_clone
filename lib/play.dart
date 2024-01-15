@@ -27,11 +27,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
   final double _maxSliderValue = 1.0;
   bool _isPlaying = false;
+  bool _isLiked = false;
 
   void _playPauseMusic() {
     if (_isPlaying) {
-      // Add logic for pausing music
+
+      _resetButton();
     } else {
+
       _playMusic();
     }
   }
@@ -39,11 +42,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   void _playMusic() {
     const duration = Duration(seconds: 10);
 
+    setState(() {
+      _isPlaying = true;
+    });
+
     Future.delayed(duration, () {
       setState(() {
         _currentSliderValue = _maxSliderValue;
         _isPlaying = false;
       });
+    });
+  }
+
+  void _resetButton() {
+    setState(() {
+      _isPlaying = false;
     });
   }
 
@@ -56,6 +69,12 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   void _skipToNext() {
     setState(() {
       _currentSliderValue = (_currentSliderValue + 0.1).clamp(0.0, _maxSliderValue);
+    });
+  }
+
+  void _toggleLike() {
+    setState(() {
+      _isLiked = !_isLiked;
     });
   }
 
@@ -115,7 +134,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -137,23 +156,19 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Add your onTap logic here
-                          setState(() {
-                            _isPlaying = true;
-                          });
+                          _toggleLike();
                         },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
+                        child: Container(
                           width: 40.0,
                           height: 40.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _isPlaying ? Colors.green : Colors.transparent,
+                            color: _isLiked ? Colors.green : Colors.transparent,
                           ),
                           child: Center(
                             child: Icon(
-                              _isPlaying ? Icons.check : Icons.add,
-                              color: _isPlaying ? Colors.white : Colors.grey,
+                              _isLiked ? Icons.check : Icons.add,
+                              color: _isLiked ? Colors.white : Colors.grey,
                               size: 20.0,
                             ),
                           ),
