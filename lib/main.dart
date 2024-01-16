@@ -1,32 +1,36 @@
 
 import 'package:flutter/material.dart';
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 enum LayoutType { list, grid }
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Spotify clone',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.black,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.black,
         ),
       ),
-      home: PlaylistScreen(),
+      home: const PlaylistScreen(),
     );
   }
 }
 class PlaylistScreen extends StatefulWidget {
+  const PlaylistScreen({super.key});
+
   @override
   _PlaylistScreenState createState() => _PlaylistScreenState();
 }
 class _PlaylistScreenState extends State<PlaylistScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
       ScaffoldState>();
-  LayoutType _layoutType = LayoutType.list;
+  final LayoutType _layoutType = LayoutType.list;
   bool showPlaylists = true;
   int selectedPlaylistIndex = -1;
   final List<Map<String, dynamic>> playlists = [
@@ -99,7 +103,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Your library',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -109,8 +113,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           onTap: () {
             _scaffoldKey.currentState!.openDrawer();
           },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
               radius: 14.0,
@@ -119,7 +123,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
             },
           ),
@@ -132,13 +136,13 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                 ),
-                accountEmail: Text(''),
+                accountEmail: const Text(''),
                 accountName: Row(
                   children: <Widget>[
-                    Container(
+                    const SizedBox(
                       width: 50,
                       height: 50,
                       child: CircleAvatar(
@@ -146,12 +150,12 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         radius: 50.0,
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'Ugum',
                           style: TextStyle(
                             fontSize: 18,
@@ -241,7 +245,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     },
                     elevation: 2.0,
                     fillColor: playlistsButtonColor,
-                    child: Padding(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Playlists',
@@ -251,11 +258,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         ),
                       ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   RawMaterialButton(
                     onPressed: () {
                       setState(() {
@@ -268,7 +272,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                     },
                     elevation: 2.0,
                     fillColor: artistsButtonColor,
-                    child: Padding(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Artists',
@@ -278,16 +285,13 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         ),
                       ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
                   ),
                 ],
               ),
             ),
             ListTile(
-              leading: Icon(Icons.access_time),
-              title: Text('Recent'),
+              leading: const Icon(Icons.access_time),
+              title: const Text('Recent'),
               onTap: () {
                 print('Latest playlist');
               },
@@ -317,7 +321,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   //kocham altki x2
   Widget _buildPlaylist() {
     if (!showPlaylists) {
-      return Center(
+      return const Center(
         child: Text(
           "You don't have any artists added",
           style: TextStyle(fontSize: 18),
@@ -330,7 +334,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       child: _layoutType == LayoutType.list
           ? ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: playlists.length,
         itemBuilder: (context, index) {
           return _buildPlaylistItem(index);
@@ -338,8 +342,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       )
           : GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 2.0,
           mainAxisSpacing: 2.0,
@@ -373,7 +377,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                 width: 55,
                 height: 55,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors
                         .black,
                   ),
@@ -383,11 +387,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
               ),
-              SizedBox(width: 13),
+              const SizedBox(width: 13),
               Expanded(
                 child: Container(
                   color: Colors.black,
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -406,7 +410,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         padding: const EdgeInsets.only(top: 2.0),
                         child: Text(
                           playlists[index]["desc"],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 13,
                             color: Colors.grey,
                           ),
