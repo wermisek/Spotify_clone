@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Spotify clone',
       theme: ThemeData.dark().copyWith(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.black,
         ),
       ),
-      home: SearchScreen(),
+      home: const SearchScreen(),
     );
   }
 }
 
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -32,7 +36,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Search',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -42,8 +46,8 @@ class _SearchScreenState extends State<SearchScreen> {
           onTap: () {
             _scaffoldKey.currentState!.openDrawer();
           },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
               radius: 16.0,
@@ -52,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.camera_alt),
+            icon: const Icon(Icons.camera_alt),
             onPressed: () {
               // Przykładowa funkcja dla przycisku aparatu
             },
@@ -66,13 +70,13 @@ class _SearchScreenState extends State<SearchScreen> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                 ),
-                accountEmail: Text(''),
+                accountEmail: const Text(''),
                 accountName: Row(
                   children: <Widget>[
-                    Container(
+                    const SizedBox(
                       width: 50,
                       height: 50,
                       child: CircleAvatar(
@@ -80,12 +84,12 @@ class _SearchScreenState extends State<SearchScreen> {
                         radius: 50.0,
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'Ugum',
                           style: TextStyle(
                             fontSize: 18,
@@ -166,7 +170,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   borderRadius: BorderRadius.circular(6.0),
                   color: Colors.grey[200],
                 ),
-                child: TextField(
+                child: const TextField(
                   style: TextStyle(
                     color: Colors.black,
                   ),
@@ -184,49 +188,49 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'Explore your genres',
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildTile('assets/#drain.gif', 'Drain'),
-                  SizedBox(width: 16.0),
+                  const SizedBox(width: 16.0),
                   _buildTile('assets/experimental.gif', 'Experimental'),
-                  SizedBox(width: 16.0),
+                  const SizedBox(width: 16.0),
                   _buildTile('assets/rage.gif', 'Rage'),
                 ],
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'Browse all',
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame1.png', 'name': ''},
                 {'image': 'assets/Frame2.png', 'name': ''}
               ]),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame3.png', 'name': ''},
                 {'image': 'assets/Frame4.png', 'name': ''}
               ]),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame5.png', 'name': ''},
                 {'image': 'assets/Frame6.png', 'name': ''}
               ]),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               _buildTilesRowBrowseAll([
                 {'image': 'assets/Frame7.png', 'name': ''},
                 {'image': 'assets/Frame8.png', 'name': ''}
@@ -277,7 +281,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       width: tileWidth,
       height: tileHeight,
-      margin: EdgeInsets.only(right:8.0),
+      margin: const EdgeInsets.only(right:8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         color: Colors.grey[200],
@@ -298,7 +302,7 @@ class _SearchScreenState extends State<SearchScreen> {
               left: 0,
               right: 0,
               child: Container(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -308,7 +312,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 child: Text(
                   tileName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -347,7 +351,7 @@ class _SearchScreenState extends State<SearchScreen> {
               left: 0,
               right: 0,
               child: Container(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -357,7 +361,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 child: Text(
                   tileName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),

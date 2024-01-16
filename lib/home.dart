@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'All' ? Colors.white : Colors.white,
+                    selectedButton == 'All' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'All'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'Music' ? Colors.white : Colors.white,
+                    selectedButton == 'Music' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Music'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -167,7 +167,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'Podcasts' ? Colors.white : Colors.white,
+                    selectedButton == 'Podcasts' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Podcasts'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -181,7 +181,7 @@ class _MyAppState extends State<MyApp> {
               },
               style: TextButton.styleFrom(
                 foregroundColor:
-                selectedButton == 'Wrapped' ? Colors.white : Colors.white,
+                    selectedButton == 'Wrapped' ? Colors.white : Colors.white,
                 backgroundColor: selectedButton == 'Wrapped'
                     ? Colors.green
                     : const Color.fromARGB(80, 80, 80, 80),
@@ -383,7 +383,7 @@ class _MyAppState extends State<MyApp> {
                               borderRadius: BorderRadius.circular(3),
                             ),
                             backgroundColor:
-                            const Color.fromARGB(80, 80, 80, 80),
+                                const Color.fromARGB(80, 80, 80, 80),
                             minimumSize: const Size(160, 60),
                             maximumSize: const Size(190, 60),
                           ),
@@ -404,7 +404,7 @@ class _MyAppState extends State<MyApp> {
                               const Padding(
                                 padding: EdgeInsets.only(
                                     right:
-                                    0), // dostosuj margines z prawej strony
+                                        0), // dostosuj margines z prawej strony
                                 child: Text(
                                   'Playlista 4',
                                   style: TextStyle(
@@ -426,7 +426,7 @@ class _MyAppState extends State<MyApp> {
                               borderRadius: BorderRadius.circular(3),
                             ),
                             backgroundColor:
-                            const Color.fromARGB(80, 80, 80, 80),
+                                const Color.fromARGB(80, 80, 80, 80),
                             minimumSize: const Size(160, 60),
                             maximumSize: const Size(190, 60),
                           ),
@@ -447,7 +447,7 @@ class _MyAppState extends State<MyApp> {
                               const Padding(
                                 padding: EdgeInsets.only(
                                     right:
-                                    0), // dostosuj margines z prawej strony
+                                        0), // dostosuj margines z prawej strony
                                 child: Text(
                                   'Playlista 5',
                                   style: TextStyle(
@@ -554,7 +554,9 @@ class _MyAppState extends State<MyApp> {
                 )
               ],
             ),
-            const SizedBox(height: 25.0,),
+            const SizedBox(
+              height: 25.0,
+            ),
             const Row(
               children: [
                 Text(
@@ -567,36 +569,178 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
-            const SizedBox(height: 25.0,),
+            const SizedBox(
+              height: 10.0,
+            ),
             Row(
               children: [
-                Column(
-                  children: [
-                    Image.asset(
-                      'assets/blend.jpg',  // Zmień ścieżkę do odpowiedniego pliku z obrazem
-                      width: 180,  // Dostosuj szerokość obrazka
-                      height: 180,  // Dostosuj wysokość obrazka
-                    ),
-                    const SizedBox(height: 8),  // Dostosuj dowolny odstęp między obrazkiem a tekstem
-                    const Text(
-                      "PrzemekBajjajo + grzesio",
-                      style: TextStyle(
-                        color: Colors.white,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Image.asset(
+                            'assets/blend.jpg',
+                            width: 160,
+                            height: 160,
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            "PrzemekBajjajo + grzesio",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Text(
+                            "Playlist • A blend of",
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const Text(
-                      "Playlist • A blend of",
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
+                      // Dodaj więcej kolumn lub innych elementów, które mają być przewijane poziomo
+                    ],
+                  ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 13.0),
+            Column(
+              children: [
+                SizedBox(
+
+                  width: 390,
+                  height: 50,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: Container(
+                          width: 390,
+                          height: 51,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF4D406C),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        left: 262,
+                        top: 14,
+                        child: SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // Dodaj widgety tutaj
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        left: 310,
+                        top: 16,
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // Dodaj widgety tutaj
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        left: 54,
+                        top: 10,
+                        child: SizedBox(
+                          width: 37,
+                          child: Text(
+                            'Unreal',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        left: 54,
+                        top: 26,
+                        child: SizedBox(
+                          width: 37,
+                          child: Text(
+                            'Bladee',
+                            style: TextStyle(
+                              color: Color(0xFFCAC6D4),
+                              fontSize: 11,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        right: 8,
+                        top: 12,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.speaker_group,
+                              color: Colors.white,
+                              size: 26,
+                            ), // Zastąp 'icon1' ikoną, którą chcesz użyć
+                            SizedBox(width: 8),
+                            Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 30,
+                            ), // Zastąp 'icon1' ikoną, którą chcesz użyć
+                            SizedBox(width: 4),
+                            Icon(
+                              Icons.play_arrow,
+                              color: Colors.white,
+                              size: 30,
+                            ), // Zastąp 'icon2' ikoną, którą chcesz użyć
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: 8,
+                        top: 7,
+                        child: Container(
+                          width: 36,
+                          height: 36,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFD9D9D9),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.black,
           unselectedItemColor: const Color.fromARGB(140, 140, 140, 140),
@@ -605,7 +749,6 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
