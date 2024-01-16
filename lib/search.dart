@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -235,6 +235,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 {'image': 'assets/Frame7.png', 'name': ''},
                 {'image': 'assets/Frame8.png', 'name': ''}
               ]),
+
+              // Dodaj Group1 pod kafelkami "Browse all"
+              const SizedBox(height: 16.0),
+              Group1(),
+
             ],
           ),
         ),
@@ -255,6 +260,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -281,7 +287,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       width: tileWidth,
       height: tileHeight,
-      margin: const EdgeInsets.only(right:8.0),
+      margin: const EdgeInsets.only(right: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         color: Colors.grey[200],
@@ -371,6 +377,125 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Group1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 346,
+          height: 51,
+          child: Stack(
+            children: [
+              Positioned(
+                left: 0,
+                top: 0,
+                child: Container(
+                  width: 346,
+                  height: 51,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF4D406C),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 262,
+                top: 14,
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // ... reszta kodu ...
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 310,
+                top: 16,
+                child: Container(
+                  width: 20,
+                  height: 20,
+                  padding: const EdgeInsets.only(
+                    top: 1.67,
+                    left: 3.33,
+                    right: 0.83,
+                    bottom: 1.67,
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // ... reszta kodu ...
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 54,
+                top: 10,
+                child: SizedBox(
+                  width: 37,
+                  child: Text(
+                    'Unreal',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 11,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 54,
+                top: 26,
+                child: SizedBox(
+                  width: 37,
+                  child: Text(
+                    'Bladee',
+                    style: TextStyle(
+                      color: Color(0xFFCAC6D4),
+                      fontSize: 11,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 8,
+                top: 7,
+                child: Container(
+                  width: 36,
+                  height: 36,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFD9D9D9),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
