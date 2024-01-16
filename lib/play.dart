@@ -95,7 +95,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   void _resetButton() {
     setState(() {
       _isPlaying = false;
-      // _currentSliderValue = 0.0;
     });
   }
 
@@ -171,12 +170,26 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             Align(
               alignment: Alignment.center,
               child: Container(
-                margin: const EdgeInsets.only(top: 35.0),
+                margin: const EdgeInsets.only(top: 35.0, bottom: 40.0),
                 width: 350.0,
-                height: 350.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10.0),
+                height: 320.0,
+                child: PageView.builder(
+                  itemCount: songs.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    );
+                  },
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentSongIndex = index;
+                      _currentSliderValue = 0.0; // Zresetuj stan odtwarzania
+                    });
+                  },
                 ),
               ),
             ),
@@ -199,7 +212,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 8.0),
+                          const SizedBox(height
+                              : 8.0),
                           Text(
                             songs[_currentSongIndex].artist,
                             style: const TextStyle(
@@ -218,12 +232,18 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           height: 40.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _likedSongs[_currentSongIndex] ? Colors.green : Colors.transparent,
+                            color: _likedSongs[_currentSongIndex]
+                                ? Colors.green
+                                : Colors.transparent,
                           ),
                           child: Center(
                             child: Icon(
-                              _likedSongs[_currentSongIndex] ? Icons.check : Icons.add,
-                              color: _likedSongs[_currentSongIndex] ? Colors.white : Colors.grey,
+                              _likedSongs[_currentSongIndex]
+                                  ? Icons.check
+                                  : Icons.add,
+                              color: _likedSongs[_currentSongIndex]
+                                  ? Colors.white
+                                  : Colors.grey,
                               size: 20.0,
                             ),
                           ),
@@ -236,7 +256,9 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             ),
             const SizedBox(height: 20.0),
             Slider(
-              value: _currentSliderValue <= _maxSliderValue ? _currentSliderValue : _maxSliderValue,
+              value: _currentSliderValue <= _maxSliderValue
+                  ? _currentSliderValue
+                  : _maxSliderValue,
               max: _maxSliderValue,
               onChanged: (double value) {
                 setState(() {
