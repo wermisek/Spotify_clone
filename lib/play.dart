@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const Play());
 
 class Song {
   final String title;
@@ -15,8 +15,8 @@ class Song {
   });
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Play extends StatelessWidget {
+  const Play({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

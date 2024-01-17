@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Search());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Search extends StatelessWidget {
+  const Search({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -238,22 +238,6 @@ class _SearchScreenState extends State<SearchScreen> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
-            label: 'Your Library',
-          ),
-        ],
       ),
     );
   }
