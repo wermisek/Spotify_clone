@@ -36,6 +36,47 @@ class MyMusicPlayer extends StatefulWidget {
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
 }
 
+class CustomMenuIcon extends StatelessWidget {
+  const CustomMenuIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        children: [
+          Container(
+            width: 6.0,
+            height: 6.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 4.0),
+          Container(
+            width: 6.0,
+            height: 6.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 4.0),
+          Container(
+            width: 6.0,
+            height: 6.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
   double _maxSliderValue = 1.0;
@@ -132,6 +173,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,16 +183,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.menu),
+            icon: const CustomMenuIcon(),
             onPressed: () {
-              // Add your onPressed logic here
             },
           ),
         ],
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
-            // Add your onPressed logic here
           },
         ),
         title: const Text(
@@ -187,7 +227,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                   onPageChanged: (index) {
                     setState(() {
                       _currentSongIndex = index;
-                      _currentSliderValue = 0.0; // Zresetuj stan odtwarzania
+                      _currentSliderValue = 0.0;
                     });
                   },
                 ),
@@ -305,6 +345,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       ),
     );
   }
+
+
 
   @override
   void dispose() {
