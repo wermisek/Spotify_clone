@@ -173,7 +173,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,12 +191,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
           },
+          color: Colors.white,
         ),
         title: const Text(
           'Liked Songs',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 13.0,
+            color: Colors.white,
           ),
         ),
         centerTitle: true,
@@ -252,8 +253,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height
-                              : 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             songs[_currentSongIndex].artist,
                             style: const TextStyle(
@@ -263,6 +263,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           ),
                         ],
                       ),
+
+
                       GestureDetector(
                         onTap: () {
                           _toggleLike();
@@ -275,20 +277,32 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                             color: _likedSongs[_currentSongIndex]
                                 ? Colors.green
                                 : Colors.transparent,
+                            border: Border.all(
+                              color: _likedSongs[_currentSongIndex]
+                                  ? Colors.transparent
+                                  : Colors.white,
+                              width: 2.0,
+                            ),
                           ),
                           child: Center(
-                            child: Icon(
-                              _likedSongs[_currentSongIndex]
-                                  ? Icons.check
-                                  : Icons.add,
-                              color: _likedSongs[_currentSongIndex]
-                                  ? Colors.white
-                                  : Colors.grey,
-                              size: 20.0,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Icon(
+                                  _likedSongs[_currentSongIndex]
+                                      ? Icons.check
+                                      : Icons.add,
+                                  color: _likedSongs[_currentSongIndex]
+                                      ? Theme.of(context).colorScheme.background
+                                      : Colors.white,
+                                  size: 20.0,
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 ],
@@ -345,8 +359,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       ),
     );
   }
-
-
 
   @override
   void dispose() {
