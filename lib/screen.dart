@@ -9,7 +9,6 @@ class YourWaterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Count Your Water',
       theme: ThemeData.dark().copyWith(
         // Twoje ustawienia tematu
       ),
