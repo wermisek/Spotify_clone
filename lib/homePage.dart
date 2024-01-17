@@ -20,6 +20,9 @@ class _MyAppState extends State<Home> {
     return MaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          color: Colors.black,
+        ),
       ),
       home: Scaffold(
         key: _scaffoldKey,
@@ -120,15 +123,6 @@ class _MyAppState extends State<Home> {
           ),
         ),
         appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              _scaffoldKey.currentState?.openDrawer();
-            },
-            child: const CircleAvatar(
-              backgroundImage: AssetImage('assets/anime.jpg'),
-            ),
-          ),
-          backgroundColor: Colors.black,
           actions: [
             TextButton(
               onPressed: () {
@@ -189,6 +183,18 @@ class _MyAppState extends State<Home> {
               child: const Text('Wrapped'),
             ),
           ],
+          leading: InkWell(
+            onTap: () {
+              _scaffoldKey.currentState!.openDrawer();
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/anime.jpg'),
+                radius: 14.0,
+              ),
+            ),
+          ),
         ),
         body: Column(
           children: [
