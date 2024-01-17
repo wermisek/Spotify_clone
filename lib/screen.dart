@@ -36,7 +36,7 @@ class _YourWaterHomePageState extends State<YourWaterHomePage> {
         children: const [
           Library(),
           Home(),
-          Search(),
+          SearchScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
