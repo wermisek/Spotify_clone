@@ -36,6 +36,47 @@ class MyMusicPlayer extends StatefulWidget {
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
 }
 
+class CustomMenuIcon extends StatelessWidget {
+  const CustomMenuIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        children: [
+          Container(
+            width: 6.0,
+            height: 6.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 4.0),
+          Container(
+            width: 6.0,
+            height: 6.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 4.0),
+          Container(
+            width: 6.0,
+            height: 6.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _currentSliderValue = 0.0;
   double _maxSliderValue = 1.0;
@@ -95,7 +136,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   void _resetButton() {
     setState(() {
       _isPlaying = false;
-      // _currentSliderValue = 0.0;
     });
   }
 
@@ -142,23 +182,23 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.menu),
+            icon: const CustomMenuIcon(),
             onPressed: () {
-              // Add your onPressed logic here
             },
           ),
         ],
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
-            // Add your onPressed logic here
           },
+          color: Colors.white,
         ),
         title: const Text(
           'Liked Songs',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 13.0,
+            color: Colors.white,
           ),
         ),
         centerTitle: true,
@@ -171,12 +211,26 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             Align(
               alignment: Alignment.center,
               child: Container(
-                margin: const EdgeInsets.only(top: 35.0),
+                margin: const EdgeInsets.only(top: 35.0, bottom: 40.0),
                 width: 350.0,
-                height: 350.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(10.0),
+                height: 320.0,
+                child: PageView.builder(
+                  itemCount: songs.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    );
+                  },
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentSongIndex = index;
+                      _currentSliderValue = 0.0;
+                    });
+                  },
                 ),
               ),
             ),
@@ -209,6 +263,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           ),
                         ],
                       ),
+
+
                       GestureDetector(
                         onTap: () {
                           _toggleLike();
@@ -218,17 +274,35 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                           height: 40.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _likedSongs[_currentSongIndex] ? Colors.green : Colors.transparent,
+                            color: _likedSongs[_currentSongIndex]
+                                ? Colors.green
+                                : Colors.transparent,
+                            border: Border.all(
+                              color: _likedSongs[_currentSongIndex]
+                                  ? Colors.transparent
+                                  : Colors.white,
+                              width: 2.0,
+                            ),
                           ),
                           child: Center(
-                            child: Icon(
-                              _likedSongs[_currentSongIndex] ? Icons.check : Icons.add,
-                              color: _likedSongs[_currentSongIndex] ? Colors.white : Colors.grey,
-                              size: 20.0,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Icon(
+                                  _likedSongs[_currentSongIndex]
+                                      ? Icons.check
+                                      : Icons.add,
+                                  color: _likedSongs[_currentSongIndex]
+                                      ? Theme.of(context).colorScheme.background
+                                      : Colors.white,
+                                  size: 20.0,
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 ],
@@ -236,7 +310,9 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             ),
             const SizedBox(height: 20.0),
             Slider(
-              value: _currentSliderValue <= _maxSliderValue ? _currentSliderValue : _maxSliderValue,
+              value: _currentSliderValue <= _maxSliderValue
+                  ? _currentSliderValue
+                  : _maxSliderValue,
               max: _maxSliderValue,
               onChanged: (double value) {
                 setState(() {
