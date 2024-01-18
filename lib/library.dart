@@ -180,6 +180,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   Navigator.pop(context);
                 },
               ),
+              //kocham grzesia
               ListTile(
                 leading: const Icon(
                   Icons.settings,
