@@ -45,6 +45,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/szesc.jpeg",
     },
     {
+      "title": "Freestyle",
+      "desc": "Playlist • grzesio",
+      "image": "assets/dziewiec.jpg",
+    },
+    {
       "title": "Gang Drenazowy",
       "desc": "Playlist • przemek",
       "image": "assets/osiem.jpg",
@@ -201,7 +206,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           children: [
             Container(
               color: Colors.black,
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(2.0),
               child: Row(
                 children: [
                   RawMaterialButton(
@@ -510,9 +515,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           ),
         ),
       ),
-
     );
   }
 }
+//navbar nadal nie dziala
 
 
