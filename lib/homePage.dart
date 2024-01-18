@@ -616,7 +616,6 @@ class _MyAppState extends State<Home> {
             Column(
               children: [
                 SizedBox(
-
                   width: 390,
                   height: 50,
                   child: Stack(
