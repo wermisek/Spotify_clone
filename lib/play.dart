@@ -17,7 +17,7 @@ class Song {
 }
 
 class Play extends StatelessWidget {
-  const Play({Key? key}) : super(key: key);
+  const Play({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class Play extends StatelessWidget {
 }
 
 class MyMusicPlayer extends StatefulWidget {
-  const MyMusicPlayer({Key? key}) : super(key: key);
+  const MyMusicPlayer({super.key});
 
   @override
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
@@ -193,7 +193,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           onPressed: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Screen()),
+                MaterialPageRoute(builder: (context) => const Screen()),
             );
           },
           color: Colors.white,
