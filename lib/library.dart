@@ -241,7 +241,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         playlistsButtonColor = Colors.green;
                         artistsButtonColor = Colors.grey.shade900;
                       });
-                      print('Playlists');
                     },
                     elevation: 2.0,
                     fillColor: playlistsButtonColor,
@@ -268,7 +267,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         playlistsButtonColor =
                             Colors.grey.shade900;
                       });
-                      print('Artists');
                     },
                     elevation: 2.0,
                     fillColor: artistsButtonColor,
@@ -293,7 +291,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               leading: const Icon(Icons.access_time),
               title: const Text('Recent'),
               onTap: () {
-                print('Latest playlist');
               },
             ),
             _buildPlaylist(),
@@ -347,7 +344,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         setState(() {
           selectedPlaylistIndex = index;
         });
-        print('Selected playlist: ${playlists[index]["title"]}');
       },
       //komentarz bo pustka lmao
       child: Card(
