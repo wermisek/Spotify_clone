@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'screen.dart';
@@ -140,6 +142,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     });
   }
 
+
   void _skipToPrevious() {
     setState(() {
       _currentSliderValue = 0.0;
@@ -153,6 +156,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   }
 
   void _skipToNext() {
+    print("_currentSongIndex before: $_currentSongIndex");
+
     setState(() {
       _currentSliderValue = 0.0;
     });
@@ -164,7 +169,11 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       // W przeciwnym razie przechodź do następnej piosenki
       _goToNextSong();
     }
+
+    print("_currentSongIndex after: $_currentSongIndex");
   }
+
+
 
   void _toggleLike() {
     setState(() {
@@ -182,42 +191,44 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         _currentSongIndex = 0;
       });
     }
+
+    if (_shuffleButtonColor == Colors.green) {
+      // Jeśli shuffle jest włączone, wybierz losową piosenkę
+      _selectRandomSong();
+    }
+
+    // Tutaj możesz dodać kod do obsługi odtwarzania utworu po zakończeniu obecnej piosenki, jeśli jest to potrzebne
   }
 
-  void _shuffle() {
 
-    // Jeśli shuffle jest wyłączone i aktualnie jest odtwarzana piosenka,
-    // przeskocz do następnej piosenki
-    if (_shuffleButtonColor == Colors.white && _isPlaying) {
+  void _shuffle() {
+    setState(() {
+      _shuffleButtonColor = _shuffleButtonColor == Colors.white ? Colors.green : Colors.white;
+    });
+
+    // Jeśli aktualnie odtwarzana jest muzyka, zatrzymaj i ponownie uruchom, aby uwzględnić losowy utwór
+    if (_isPlaying) {
       _stopMusic();
-      _goToNextSong();
       _playMusic();
     }
   }
+
 
   void _selectRandomSong() {
     // Zapisz bieżącą piosenkę, aby uniknąć ponownego odtwarzania tej samej piosenki
     int currentSongIndexBeforeShuffle = _currentSongIndex;
 
     // Wybierz losowy indeks dla nowej piosenki
-    int newSongIndex;
-    do {
-      newSongIndex = _currentSongIndex != currentSongIndexBeforeShuffle
-          ? _currentSongIndex
-          : (currentSongIndexBeforeShuffle + 1) % songs.length;
-    } while (newSongIndex == currentSongIndexBeforeShuffle);
+    int newSongIndex = currentSongIndexBeforeShuffle;
+    while (newSongIndex == currentSongIndexBeforeShuffle) {
+      newSongIndex = Random().nextInt(songs.length);
+    }
 
     // Zmiana na nową piosenkę
     setState(() {
       _currentSongIndex = newSongIndex;
       _currentSliderValue = 0.0;
     });
-
-    // Jeśli muzyka jest w trakcie odtwarzania, zatrzymaj ją i ponownie rozpocznij dla nowej piosenki
-    if (_isPlaying) {
-      _stopMusic();
-      _playMusic();
-    }
   }
 
   void _toggleLoop() {
@@ -413,9 +424,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                       icon: Icon(Icons.shuffle, size: 36.0, color: _shuffleButtonColor),
                       onPressed: () {
                         _shuffle();
-                        setState(() {
-                          _shuffleButtonColor = _shuffleButtonColor == Colors.white ? Colors.green : Colors.white;
-                        });
                       },
                     ),
                     const SizedBox(width: 18.0),
@@ -439,6 +447,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         child: _isPlaying
                             ? Icon(Icons.pause, size: 36.0, color: iconColor)
                             : Icon(Icons.play_arrow, size: 36.0, color: iconColor),
+
                       ),
                     ),
                     const SizedBox(width: 18.0),
