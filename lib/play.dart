@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'screen.dart';
 
 void main() => runApp(const Play());
 
@@ -16,7 +17,7 @@ class Song {
 }
 
 class Play extends StatelessWidget {
-  const Play({Key? key}) : super(key: key);
+  const Play({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class Play extends StatelessWidget {
 }
 
 class MyMusicPlayer extends StatefulWidget {
-  const MyMusicPlayer({Key? key}) : super(key: key);
+  const MyMusicPlayer({super.key});
 
   @override
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
@@ -156,6 +157,22 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       _currentSliderValue = 0.0;
     });
 
+    if (_shuffleButtonColor == Colors.green) {
+      // Jeśli shuffle jest włączone, wybierz losową piosenkę
+      _selectRandomSong();
+    } else {
+      // W przeciwnym razie przechodź do następnej piosenki
+      _goToNextSong();
+    }
+  }
+
+  void _toggleLike() {
+    setState(() {
+      _likedSongs[_currentSongIndex] = !_likedSongs[_currentSongIndex];
+    });
+  }
+
+  void _goToNextSong() {
     if (_currentSongIndex < songs.length - 1) {
       setState(() {
         _currentSongIndex++;
@@ -167,11 +184,49 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     }
   }
 
-  void _toggleLike() {
-    setState(() {
-      _likedSongs[_currentSongIndex] = !_likedSongs[_currentSongIndex];
-    });
+  void _shuffle() {
+
+    // Jeśli shuffle jest wyłączone i aktualnie jest odtwarzana piosenka,
+    // przeskocz do następnej piosenki
+    if (_shuffleButtonColor == Colors.white && _isPlaying) {
+      _stopMusic();
+      _goToNextSong();
+      _playMusic();
+    }
   }
+
+  void _selectRandomSong() {
+    // Zapisz bieżącą piosenkę, aby uniknąć ponownego odtwarzania tej samej piosenki
+    int currentSongIndexBeforeShuffle = _currentSongIndex;
+
+    // Wybierz losowy indeks dla nowej piosenki
+    int newSongIndex;
+    do {
+      newSongIndex = _currentSongIndex != currentSongIndexBeforeShuffle
+          ? _currentSongIndex
+          : (currentSongIndexBeforeShuffle + 1) % songs.length;
+    } while (newSongIndex == currentSongIndexBeforeShuffle);
+
+    // Zmiana na nową piosenkę
+    setState(() {
+      _currentSongIndex = newSongIndex;
+      _currentSliderValue = 0.0;
+    });
+
+    // Jeśli muzyka jest w trakcie odtwarzania, zatrzymaj ją i ponownie rozpocznij dla nowej piosenki
+    if (_isPlaying) {
+      _stopMusic();
+      _playMusic();
+    }
+  }
+
+  void _toggleLoop() {
+
+  }
+
+  Color _shuffleButtonColor = Colors.white;
+
+  Color _loopButtonColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +250,10 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
-            // Add your onPressed logic here
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Screen()),
+            );
           },
           color: Colors.white,
         ),
@@ -352,8 +410,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     IconButton(
+                      icon: Icon(Icons.shuffle, size: 36.0, color: _shuffleButtonColor),
+                      onPressed: () {
+                        _shuffle();
+                        setState(() {
+                          _shuffleButtonColor = _shuffleButtonColor == Colors.white ? Colors.green : Colors.white;
+                        });
+                      },
+                    ),
+                    const SizedBox(width: 18.0),
+                    IconButton(
                       icon: const Icon(
-                          Icons.skip_previous, size: 48.0, color: Colors.white),
+                        Icons.skip_previous,
+                        size: 48.0,
+                        color: Colors.white,
+                      ),
                       onPressed: _skipToPrevious,
                     ),
                     const SizedBox(width: 18.0),
@@ -367,15 +438,27 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         padding: const EdgeInsets.all(8.0),
                         child: _isPlaying
                             ? Icon(Icons.pause, size: 36.0, color: iconColor)
-                            : Icon(
-                            Icons.play_arrow, size: 36.0, color: iconColor),
+                            : Icon(Icons.play_arrow, size: 36.0, color: iconColor),
                       ),
                     ),
                     const SizedBox(width: 18.0),
                     IconButton(
                       icon: const Icon(
-                          Icons.skip_next, size: 48.0, color: Colors.white),
+                        Icons.skip_next,
+                        size: 48.0,
+                        color: Colors.white,
+                      ),
                       onPressed: _skipToNext,
+                    ),
+                    const SizedBox(width: 18.0),
+                    IconButton(
+                      icon: Icon(Icons.loop, size: 36.0, color: _loopButtonColor),
+                      onPressed: () {
+                        _toggleLoop();
+                        setState(() {
+                          _loopButtonColor = _loopButtonColor == Colors.white ? Colors.green : Colors.white;
+                        });
+                      },
                     ),
                   ],
                 ),
