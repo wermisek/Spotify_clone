@@ -304,7 +304,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // Dodaj widgety tutaj
+
                             ],
                           ),
                         ),
@@ -320,7 +320,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // Dodaj widgety tutaj
+
                             ],
                           ),
                         ),
@@ -368,19 +368,19 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                               Icons.speaker_group,
                               color: Colors.white,
                               size: 26,
-                            ), // Zastąp 'icon1' ikoną, którą chcesz użyć
+                            ),
                             SizedBox(width: 8),
                             Icon(
                               Icons.add,
                               color: Colors.white,
                               size: 30,
-                            ), // Zastąp 'icon1' ikoną, którą chcesz użyć
+                            ),
                             SizedBox(width: 4),
                             Icon(
                               Icons.play_arrow,
                               color: Colors.white,
                               size: 30,
-                            ), // Zastąp 'icon2' ikoną, którą chcesz użyć
+                            ),
                           ],
                         ),
                       ),
@@ -408,7 +408,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
-  //kocham altki x2
   Widget _buildPlaylist() {
     return Container(
       color: Colors.black,
@@ -436,7 +435,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
-
   Widget _buildPlaylistItem(int index) {
     bool isSelected = selectedPlaylistIndex == index;
     return GestureDetector(
@@ -446,7 +444,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         });
         print('Selected playlist: ${playlists[index]["title"]}');
       },
-      //komentarz bo pustka lmao
       child: Card(
         color: Colors.black,
         clipBehavior: Clip.antiAlias,
@@ -509,6 +506,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     );
   }
 }
-//navbar nadal nie dziala
+
 
 
