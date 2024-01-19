@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -46,8 +46,8 @@ class _SearchScreenState extends State<SearchScreen> {
           onTap: () {
             _scaffoldKey.currentState!.openDrawer();
           },
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
               radius: 16.0,
@@ -159,94 +159,204 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.0),
-                  color: Colors.grey[200],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6.0),
+                color: Colors.grey[200],
+              ),
+              child: const TextField(
+                style: TextStyle(
+                  color: Colors.black,
                 ),
-                child: const TextField(
-                  style: TextStyle(
+                decoration: InputDecoration(
+                  hintText: 'What do you want to listen to?',
+                  hintStyle: TextStyle(
+                    color: Colors.black54,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(16.0),
+                  prefixIcon: Icon(
+                    Icons.search,
                     color: Colors.black,
                   ),
-                  decoration: InputDecoration(
-                    hintText: 'What do you want to listen to?',
-                    hintStyle: TextStyle(
-                      color: Colors.black54,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            const Text(
+              'Explore your genres',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTile('assets/#drain.gif', 'Drain'),
+                const SizedBox(width: 16.0),
+                _buildTile('assets/experimental.gif', 'Experimental'),
+                const SizedBox(width: 16.0),
+                _buildTile('assets/rage.gif', 'Rage'),
+              ],
+            ),
+            const SizedBox(height: 16.0),
+            const Text(
+              'Browse all',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            _buildTilesRowBrowseAll([
+              {'image': 'assets/Frame1.png', 'name': ''},
+              {'image': 'assets/Frame2.png', 'name': ''}
+            ]),
+            const SizedBox(height: 8.0),
+            _buildTilesRowBrowseAll([
+              {'image': 'assets/Frame3.png', 'name': ''},
+              {'image': 'assets/Frame4.png', 'name': ''}
+            ]),
+            // Fixing incomplete GestureDetector
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NextScreen()),
+                );
+              },
+              child: SizedBox(
+                width: 390,
+                height: 50,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 0,
+                      top: 0,
+                      child: Container(
+                        width: 390,
+                        height: 51,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFF4D406C),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
                     ),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(16.0),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black,
+                    Positioned(
+                      left: 262,
+                      top: 14,
+                      child: SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Dodaj widgety tutaj
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      left: 310,
+                      top: 16,
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Dodaj widgety tutaj
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 54,
+                      top: 10,
+                      child: SizedBox(
+                        width: 37,
+                        child: Text(
+                          'Unreal',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 54,
+                      top: 26,
+                      child: SizedBox(
+                        width: 37,
+                        child: Text(
+                          'Bladee',
+                          style: TextStyle(
+                            color: Color(0xFFCAC6D4),
+                            fontSize: 11,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 8,
+                      top: 12,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.speaker_group,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                          SizedBox(width: 8),
+                          Icon(
+                            Icons.play_arrow,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 8,
+                      top: 7,
+                      child: Container(
+                        width: 36,
+                        height: 36,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFFD9D9D9),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 16.0),
-              const Text(
-                'Explore your genres',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildTile('assets/#drain.gif', 'Drain'),
-                  const SizedBox(width: 16.0),
-                  _buildTile('assets/experimental.gif', 'Experimental'),
-                  const SizedBox(width: 16.0),
-                  _buildTile('assets/rage.gif', 'Rage'),
-                ],
-              ),
-              const SizedBox(height: 16.0),
-              const Text(
-                'Browse all',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame1.png', 'name': ''},
-                {'image': 'assets/Frame2.png', 'name': ''}
-              ]),
-              const SizedBox(height: 8.0),
-              _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame3.png', 'name': ''},
-                {'image': 'assets/Frame4.png', 'name': ''}
-              ]),
-              const SizedBox(height: 8.0),
-              _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame5.png', 'name': ''},
-                {'image': 'assets/Frame6.png', 'name': ''}
-              ]),
-              const SizedBox(height: 8.0),
-              _buildTilesRowBrowseAll([
-                {'image': 'assets/Frame7.png', 'name': ''},
-                {'image': 'assets/Frame8.png', 'name': ''}
-              ]),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTilesRow(List<Map<String, String>> tilesData) {
-    return Row(
-      children: tilesData.map((tileData) {
-        return _buildTile(tileData['image']!, tileData['name']!);
-      }).toList(),
     );
   }
 
@@ -265,7 +375,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       width: tileWidth,
       height: tileHeight,
-      margin: const EdgeInsets.only(right:8.0),
+      margin: const EdgeInsets.only(right: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         color: Colors.grey[200],
@@ -354,6 +464,21 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Added a placeholder for NextScreen
+class NextScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Next Screen'),
+      ),
+      body: Center(
+        child: Text('This is the next screen!'),
       ),
     );
   }
