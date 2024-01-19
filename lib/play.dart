@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'screen.dart';
 
 void main() => runApp(const Play());
 
@@ -16,7 +17,7 @@ class Song {
 }
 
 class Play extends StatelessWidget {
-  const Play({Key? key}) : super(key: key);
+  const Play({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class Play extends StatelessWidget {
 }
 
 class MyMusicPlayer extends StatefulWidget {
-  const MyMusicPlayer({Key? key}) : super(key: key);
+  const MyMusicPlayer({super.key});
 
   @override
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
@@ -190,6 +191,10 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Screen())
+            );
           },
           color: Colors.white,
         ),
