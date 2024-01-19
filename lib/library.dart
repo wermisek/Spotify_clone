@@ -26,7 +26,7 @@ class PlaylistScreen extends StatefulWidget {
 
   @override
   _PlaylistScreenState createState() => _PlaylistScreenState();
-}//xd
+}
 class _PlaylistScreenState extends State<PlaylistScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
       ScaffoldState>();
