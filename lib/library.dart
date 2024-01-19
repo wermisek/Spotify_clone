@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(const Library());
 }
+
 enum LayoutType { list, grid }
+
 class Library extends StatelessWidget {
   const Library({super.key});
 
@@ -21,18 +23,19 @@ class Library extends StatelessWidget {
     );
   }
 }
+
 class PlaylistScreen extends StatefulWidget {
   const PlaylistScreen({super.key});
 
   @override
   _PlaylistScreenState createState() => _PlaylistScreenState();
 }
+
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
-      ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final LayoutType _layoutType = LayoutType.list;
-  bool showPlaylists = true;
   int selectedPlaylistIndex = -1;
+
   final List<Map<String, dynamic>> playlists = [
     {
       "title": "Liked songs",
@@ -40,7 +43,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/liked.png",
     },
     {
-      "title": "Grzesio slucha Taylor Swift",
+      "title": "Grzesio swifties",
       "desc": "Playlist • wermis",
       "image": "assets/szesc.jpeg",
     },
@@ -70,9 +73,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/plus.jpg",
     }
   ];
+
   Color playlistsButtonColor = Colors.green;
-  Color artistsButtonColor = Colors.grey
-      .shade900;
+  Color artistsButtonColor = Colors.grey.shade900;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,8 +103,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -180,7 +183,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   Navigator.pop(context);
                 },
               ),
-              //kocham grzesia
               ListTile(
                 leading: const Icon(
                   Icons.settings,
@@ -213,7 +215,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   RawMaterialButton(
                     onPressed: () {
                       setState(() {
-                        showPlaylists = true;
                         playlistsButtonColor = Colors.green;
                         artistsButtonColor = Colors.grey.shade900;
                       });
@@ -239,10 +240,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   RawMaterialButton(
                     onPressed: () {
                       setState(() {
-                        showPlaylists = false;
                         artistsButtonColor = Colors.green;
-                        playlistsButtonColor =
-                            Colors.grey.shade900;
+                        playlistsButtonColor = Colors.grey.shade900;
                       });
                       print('Artists');
                     },
@@ -411,15 +410,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   }
   //kocham altki x2
   Widget _buildPlaylist() {
-    if (!showPlaylists) {
-      return const Center(
-        child: Text(
-          "You don't have any artists added",
-          style: TextStyle(fontSize: 18),
-        ),
-      );
-    }
-    //kocham altki
     return Container(
       color: Colors.black,
       child: _layoutType == LayoutType.list
@@ -446,7 +436,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
-  //kolejny kom dla zabawy lmao
+
   Widget _buildPlaylistItem(int index) {
     bool isSelected = selectedPlaylistIndex == index;
     return GestureDetector(
