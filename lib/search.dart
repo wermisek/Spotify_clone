@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'play.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -46,8 +47,8 @@ class _SearchScreenState extends State<SearchScreen> {
           onTap: () {
             _scaffoldKey.currentState!.openDrawer();
           },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundImage: AssetImage('assets/anime.jpg'),
               radius: 16.0,
@@ -195,7 +196,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -206,7 +207,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 _buildTile('assets/rage.gif', 'Rage'),
               ],
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 8.0),
             const Text(
               'Browse all',
               style: TextStyle(
@@ -224,17 +225,17 @@ class _SearchScreenState extends State<SearchScreen> {
               {'image': 'assets/Frame3.png', 'name': ''},
               {'image': 'assets/Frame4.png', 'name': ''}
             ]),
-            // Fixing incomplete GestureDetector
+            SizedBox(height: 0.0,),
             GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NextScreen()),
+                  MaterialPageRoute(builder: (context) => const Play()),
                 );
               },
               child: SizedBox(
                 width: 390,
-                height: 50,
+                height: 48,
                 child: Stack(
                   children: [
                     Positioned(
@@ -251,7 +252,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       left: 262,
                       top: 14,
                       child: SizedBox(
@@ -267,7 +268,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       left: 310,
                       top: 16,
                       child: SizedBox(
@@ -283,7 +284,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       left: 54,
                       top: 10,
                       child: SizedBox(
@@ -300,7 +301,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       left: 54,
                       top: 26,
                       child: SizedBox(
@@ -317,7 +318,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       right: 8,
                       top: 12,
                       child: Row(
@@ -471,13 +472,15 @@ class _SearchScreenState extends State<SearchScreen> {
 
 // Added a placeholder for NextScreen
 class NextScreen extends StatelessWidget {
+  const NextScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Next Screen'),
+        title: const Text('Next Screen'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('This is the next screen!'),
       ),
     );
