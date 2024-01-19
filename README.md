@@ -1,3 +1,3 @@
 # spotify_clone
 
-spotify
+Spotify robimy cn bardzo super generalnie
