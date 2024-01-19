@@ -1,3 +1,3 @@
 # spotify_clone
 
-Spotify robimy cn bardzo super generalnie
+![](https://github.com/wermisek/gif/blob/main/shigure-ui-dance.gif)
