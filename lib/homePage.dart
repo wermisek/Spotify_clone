@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'play.dart';
 
 void main() {
   runApp(const Home());
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -613,131 +614,139 @@ class _MyAppState extends State<Home> {
               ],
             ),
             const SizedBox(height: 13.0),
-            Column(
-              children: [
-                SizedBox(
-                  width: 390,
-                  height: 50,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 390,
-                          height: 51,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFF4D406C),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
+        Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Play()),
+                );
+              },
+              child: SizedBox(
+                width: 390,
+                height: 50,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 0,
+                      top: 0,
+                      child: Container(
+                        width: 390,
+                        height: 51,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFF4D406C),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                       ),
-                      const Positioned(
-                        left: 262,
-                        top: 14,
-                        child: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // Dodaj widgety tutaj
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        left: 310,
-                        top: 16,
-                        child: SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // Dodaj widgety tutaj
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        left: 54,
-                        top: 10,
-                        child: SizedBox(
-                          width: 37,
-                          child: Text(
-                            'Unreal',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 11,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              height: 0,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        left: 54,
-                        top: 26,
-                        child: SizedBox(
-                          width: 37,
-                          child: Text(
-                            'Bladee',
-                            style: TextStyle(
-                              color: Color(0xFFCAC6D4),
-                              fontSize: 11,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              height: 0,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        right: 8,
-                        top: 12,
+                    ),
+                    const Positioned(
+                      left: 262,
+                      top: 14,
+                      child: SizedBox(
+                        width: 24,
+                        height: 24,
                         child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.speaker_group,
-                              color: Colors.white,
-                              size: 26,
-                            ),
-                            SizedBox(width: 8),
-                            Icon(
-                              Icons.play_arrow,
-                              color: Colors.white,
-                              size: 30,
-                            ),
+                            // Dodaj widgety tutaj
                           ],
                         ),
                       ),
-                      Positioned(
-                        left: 8,
-                        top: 7,
-                        child: Container(
-                          width: 36,
-                          height: 36,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFD9D9D9),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
+                    ),
+                    const Positioned(
+                      left: 310,
+                      top: 16,
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Dodaj widgety tutaj
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      left: 54,
+                      top: 10,
+                      child: SizedBox(
+                        width: 37,
+                        child: Text(
+                          'Unreal',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    const Positioned(
+                      left: 54,
+                      top: 26,
+                      child: SizedBox(
+                        width: 37,
+                        child: Text(
+                          'Bladee',
+                          style: TextStyle(
+                            color: Color(0xFFCAC6D4),
+                            fontSize: 11,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      right: 8,
+                      top: 12,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.speaker_group,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                          SizedBox(width: 8),
+                          Icon(
+                            Icons.play_arrow,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 8,
+                      top: 7,
+                      child: Container(
+                        width: 36,
+                        height: 36,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFFD9D9D9),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
+          ],
+        ),
           ],
         ),
       ),

@@ -18,7 +18,7 @@ class Screen extends StatelessWidget {
 }
 
 class DisplayPage extends StatefulWidget {
-  const DisplayPage({Key? key}) : super(key: key);
+  const DisplayPage({super.key});
 
   @override
   _DisplayPageState createState() => _DisplayPageState();
