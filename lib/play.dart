@@ -37,7 +37,7 @@ class MyMusicPlayer extends StatefulWidget {
 }
 
 class CustomMenuIcon extends StatelessWidget {
-  const CustomMenuIcon({Key? key});
+  const CustomMenuIcon({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -176,8 +176,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   @override
   Widget build(BuildContext context) {
     Color iconColor = _isPlaying
-        ? Theme.of(context).colorScheme.background
-        : Theme.of(context).colorScheme.background;
+        ? Theme
+        .of(context)
+        .colorScheme
+        .background
+        : Theme
+        .of(context)
+        .colorScheme
+        .background;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -218,7 +224,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               Align(
                 alignment: Alignment.center,
                 child: Container(
-                  margin: const EdgeInsets.only(top: 35.0, bottom: 30.0),
+                  margin: const EdgeInsets.only(top: 35.0, bottom: 40.0),
                   width: 350.0,
                   height: 320.0,
                   child: PageView.builder(
@@ -315,7 +321,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                   ],
                 ),
               ),
-              const SizedBox(height: 10.0),
+              const SizedBox(height: 20.0),
               Slider(
                 value: _currentSliderValue <= _maxSliderValue
                     ? _currentSliderValue
@@ -328,26 +334,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                 },
                 activeColor: Colors.white,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      _formatDuration(Duration(seconds: _currentSliderValue.toInt())),
-                      style: const TextStyle(color: Colors.grey, fontSize: 12.0),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: Text(
-                      _formatDuration(Duration(seconds: _maxSliderValue.toInt())),
-                      style: const TextStyle(color: Colors.grey, fontSize: 12.0),
-                    ),
-                  ),
-                ],
-              ),
-              Center(
+              Center( // Center the Row with playback controls
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -385,14 +372,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           ),
         ),
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20.0, right: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                // Add your onPressed logic here
+              },
+            ),
+          ],
+        ),
+      ),
     );
-  }
-
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return '$twoDigitMinutes:$twoDigitSeconds';
   }
 
   @override
