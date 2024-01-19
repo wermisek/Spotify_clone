@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'play.dart';
 
 void main() {
   runApp(const MyApp());
@@ -160,206 +159,89 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6.0),
-                color: Colors.grey[200],
-              ),
-              child: const TextField(
-                style: TextStyle(
-                  color: Colors.black,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  color: Colors.grey[200],
                 ),
-                decoration: InputDecoration(
-                  hintText: 'What do you want to listen to?',
-                  hintStyle: TextStyle(
-                    color: Colors.black54,
-                  ),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(16.0),
-                  prefixIcon: Icon(
-                    Icons.search,
+                child: const TextField(
+                  style: TextStyle(
                     color: Colors.black,
                   ),
+                  decoration: InputDecoration(
+                    hintText: 'What do you want to listen to?',
+                    hintStyle: TextStyle(
+                      color: Colors.black54,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(16.0),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            const Text(
-              'Explore your genres',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildTile('assets/#drain.gif', 'Drain'),
-                const SizedBox(width: 16.0),
-                _buildTile('assets/experimental.gif', 'Experimental'),
-                const SizedBox(width: 16.0),
-                _buildTile('assets/rage.gif', 'Rage'),
-              ],
-            ),
-            const SizedBox(height: 8.0),
-            const Text(
-              'Browse all',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            _buildTilesRowBrowseAll([
-              {'image': 'assets/Frame1.png', 'name': ''},
-              {'image': 'assets/Frame2.png', 'name': ''}
-            ]),
-            const SizedBox(height: 8.0),
-            _buildTilesRowBrowseAll([
-              {'image': 'assets/Frame3.png', 'name': ''},
-              {'image': 'assets/Frame4.png', 'name': ''}
-            ]),
-            SizedBox(height: 0.0,),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Play()),
-                );
-              },
-              child: SizedBox(
-                width: 390,
-                height: 48,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: Container(
-                        width: 390,
-                        height: 51,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF4D406C),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      left: 262,
-                      top: 14,
-                      child: SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // Dodaj widgety tutaj
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      left: 310,
-                      top: 16,
-                      child: SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // Dodaj widgety tutaj
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      left: 54,
-                      top: 10,
-                      child: SizedBox(
-                        width: 37,
-                        child: Text(
-                          'Unreal',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      left: 54,
-                      top: 26,
-                      child: SizedBox(
-                        width: 37,
-                        child: Text(
-                          'Bladee',
-                          style: TextStyle(
-                            color: Color(0xFFCAC6D4),
-                            fontSize: 11,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      right: 8,
-                      top: 12,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.speaker_group,
-                            color: Colors.white,
-                            size: 26,
-                          ),
-                          SizedBox(width: 8),
-                          Icon(
-                            Icons.play_arrow,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      left: 8,
-                      top: 7,
-                      child: Container(
-                        width: 36,
-                        height: 36,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFFD9D9D9),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+              const SizedBox(height: 16.0),
+              const Text(
+                'Explore your genres',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildTile('assets/#drain.gif', 'Drain'),
+                  const SizedBox(width: 16.0),
+                  _buildTile('assets/experimental.gif', 'Experimental'),
+                  const SizedBox(width: 16.0),
+                  _buildTile('assets/rage.gif', 'Rage'),
+                ],
+              ),
+              const SizedBox(height: 16.0),
+              const Text(
+                'Browse all',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
+                {'image': 'assets/Frame1.png', 'name': ''},
+                {'image': 'assets/Frame2.png', 'name': ''}
+              ]),
+              const SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
+                {'image': 'assets/Frame3.png', 'name': ''},
+                {'image': 'assets/Frame4.png', 'name': ''}
+              ]),
+              const SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
+                {'image': 'assets/Frame5.png', 'name': ''},
+                {'image': 'assets/Frame6.png', 'name': ''}
+              ]),
+              const SizedBox(height: 8.0),
+              _buildTilesRowBrowseAll([
+                {'image': 'assets/Frame7.png', 'name': ''},
+                {'image': 'assets/Frame8.png', 'name': ''}
+              ]),
+            ],
+          ),
         ),
       ),
     );
   }
+
 
   Widget _buildTilesRowBrowseAll(List<Map<String, String>> tilesData) {
     return Row(
@@ -376,7 +258,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       width: tileWidth,
       height: tileHeight,
-      margin: const EdgeInsets.only(right: 8.0),
+      margin: const EdgeInsets.only(right:8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         color: Colors.grey[200],
@@ -469,21 +351,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-// Added a placeholder for NextScreen
-class NextScreen extends StatelessWidget {
-  const NextScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Next Screen'),
-      ),
-      body: const Center(
-        child: Text('This is the next screen!'),
-      ),
-    );
-  }
-}
-//niewazne
