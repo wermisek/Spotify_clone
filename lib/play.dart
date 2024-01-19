@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'screen.dart';
 
 void main() => runApp(const Play());
 
@@ -190,6 +191,10 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
           onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Screen()),
+            );
           },
           color: Colors.white,
         ),
