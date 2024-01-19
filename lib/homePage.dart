@@ -275,7 +275,7 @@ class _MyAppState extends State<Home> {
                         padding: EdgeInsets.only(
                             right: 0), // dostosuj margines z prawej strony
                         child: Text(
-                          'Playlista 1',
+                          'Grzesio swiftie',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -322,7 +322,7 @@ class _MyAppState extends State<Home> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Playlista 2',
+                              'Freestyle',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -363,7 +363,7 @@ class _MyAppState extends State<Home> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Playlista 3',
+                              'Gang drenażowy',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -412,7 +412,7 @@ class _MyAppState extends State<Home> {
                                     right:
                                     0), // dostosuj margines z prawej strony
                                 child: Text(
-                                  'Playlista 4',
+                                  'Ugumownia',
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),
@@ -455,7 +455,7 @@ class _MyAppState extends State<Home> {
                                     right:
                                     0), // dostosuj margines z prawej strony
                                 child: Text(
-                                  'Playlista 5',
+                                  'Ugumownia 2',
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),
@@ -506,7 +506,7 @@ class _MyAppState extends State<Home> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Playlista 6',
+                              "God's plan",
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -547,7 +547,7 @@ class _MyAppState extends State<Home> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Playlista 6',
+                              'Hyperpop',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -616,7 +616,6 @@ class _MyAppState extends State<Home> {
             Column(
               children: [
                 SizedBox(
-
                   width: 390,
                   height: 50,
                   child: Stack(
@@ -710,19 +709,13 @@ class _MyAppState extends State<Home> {
                               Icons.speaker_group,
                               color: Colors.white,
                               size: 26,
-                            ), // Zastąp 'icon1' ikoną, którą chcesz użyć
+                            ),
                             SizedBox(width: 8),
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 30,
-                            ), // Zastąp 'icon1' ikoną, którą chcesz użyć
-                            SizedBox(width: 4),
                             Icon(
                               Icons.play_arrow,
                               color: Colors.white,
                               size: 30,
-                            ), // Zastąp 'icon2' ikoną, którą chcesz użyć
+                            ),
                           ],
                         ),
                       ),

@@ -3,8 +3,8 @@ import 'library.dart';
 import 'search.dart';
 import 'package:flutter/material.dart';
 
-class YourWaterApp extends StatelessWidget {
-  const YourWaterApp({super.key});
+class Screen extends StatelessWidget {
+  const Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +12,19 @@ class YourWaterApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         // Twoje ustawienia tematu
       ),
-      home: const YourWaterHomePage(),
+      home: const DisplayPage(),
     );
   }
 }
 
-class YourWaterHomePage extends StatefulWidget {
-  const YourWaterHomePage({Key? key}) : super(key: key);
+class DisplayPage extends StatefulWidget {
+  const DisplayPage({Key? key}) : super(key: key);
 
   @override
-  _YourWaterHomePageState createState() => _YourWaterHomePageState();
+  _DisplayPageState createState() => _DisplayPageState();
 }
 
-class _YourWaterHomePageState extends State<YourWaterHomePage> {
+class _DisplayPageState extends State<DisplayPage> {
   int _currentIndex = 1; // Ustawianie początkowego indeksu
 
   @override
@@ -68,5 +68,5 @@ class _YourWaterHomePageState extends State<YourWaterHomePage> {
 }
 
 void main() {
-  runApp(const YourWaterApp());
+  runApp(const Screen());
 }

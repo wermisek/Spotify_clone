@@ -1,3 +1,4 @@
 # spotify_clone
 
-spotify
+![](https://github.com/wermisek/gif/blob/main/shigure-ui-dance.gif)
+![](https://github.com/wermisek/gif/blob/main/giphy.gif)
