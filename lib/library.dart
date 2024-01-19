@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-import 'play.dart';
 
+import 'package:flutter/material.dart';
 void main() {
   runApp(const Library());
 }
-//cis
 enum LayoutType { list, grid }
-
 class Library extends StatelessWidget {
   const Library({super.key});
 
@@ -24,19 +21,18 @@ class Library extends StatelessWidget {
     );
   }
 }
-
 class PlaylistScreen extends StatefulWidget {
   const PlaylistScreen({super.key});
 
   @override
   _PlaylistScreenState createState() => _PlaylistScreenState();
 }
-
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<
+      ScaffoldState>();
   final LayoutType _layoutType = LayoutType.list;
+  bool showPlaylists = true;
   int selectedPlaylistIndex = -1;
-
   final List<Map<String, dynamic>> playlists = [
     {
       "title": "Liked songs",
@@ -44,7 +40,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/liked.png",
     },
     {
-      "title": "Grzesio swifties",
+      "title": "Grzesio slucha Taylor Swift",
       "desc": "Playlist • wermis",
       "image": "assets/szesc.jpeg",
     },
@@ -64,6 +60,31 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/siedem.jpeg",
     },
     {
+      "title": "Ugumownia 2",
+      "desc": "Playlist • ugum",
+      "image": "assets/piec.jpg",
+    },
+    {
+      "title": "I know something about facebook",
+      "desc": "Playlist • Kaliop",
+      "image": "assets/cztery.jpg",
+    },
+    {
+      "title": "Super ze jestescie",
+      "desc": "Playlist • HejkaTuLenka",
+      "image": "assets/trzy.jpeg",
+    },
+    {
+      "title": "White mans in Paris",
+      "desc": "Playlist • Kanye East",
+      "image": "assets/dwa.jpg",
+    },
+    {
+      "title": "I call women mommy",
+      "desc": "Playlist • kocham altki",
+      "image": "assets/jeden.jpg",
+    },
+    {
       "title": "Add artists",
       "desc": "Add artist here",
       "image": "assets/plus.jpg",
@@ -74,10 +95,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       "image": "assets/plus.jpg",
     }
   ];
-
   Color playlistsButtonColor = Colors.green;
-  Color artistsButtonColor = Colors.grey.shade900;
-
+  Color artistsButtonColor = Colors.grey
+      .shade900;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +124,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+            },
           ),
         ],
       ),
@@ -210,12 +231,13 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           children: [
             Container(
               color: Colors.black,
-              padding: const EdgeInsets.all(1.0),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   RawMaterialButton(
                     onPressed: () {
                       setState(() {
+                        showPlaylists = true;
                         playlistsButtonColor = Colors.green;
                         artistsButtonColor = Colors.grey.shade900;
                       });
@@ -241,8 +263,10 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   RawMaterialButton(
                     onPressed: () {
                       setState(() {
+                        showPlaylists = false;
                         artistsButtonColor = Colors.green;
-                        playlistsButtonColor = Colors.grey.shade900;
+                        playlistsButtonColor =
+                            Colors.grey.shade900;
                       });
                       print('Artists');
                     },
@@ -273,145 +297,22 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               },
             ),
             _buildPlaylist(),
-        Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Play()),
-                );
-              },
-              child: SizedBox(
-                width: 390,
-                height: 50,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: Container(
-                        width: 390,
-                        height: 51,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF4D406C),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 262,
-                      top: 14,
-                      child: SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // Dodaj widgety tutaj
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 310,
-                      top: 16,
-                      child: SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // Dodaj widgety tutaj
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 54,
-                      top: 10,
-                      child: SizedBox(
-                        width: 37,
-                        child: Text(
-                          'Unreal',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 54,
-                      top: 26,
-                      child: SizedBox(
-                        width: 37,
-                        child: Text(
-                          'Bladee',
-                          style: TextStyle(
-                            color: Color(0xFFCAC6D4),
-                            fontSize: 11,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 8,
-                      top: 12,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.speaker_group,
-                            color: Colors.white,
-                            size: 26,
-                          ),
-                          SizedBox(width: 8),
-                          Icon(
-                            Icons.play_arrow,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      left: 8,
-                      top: 7,
-                      child: Container(
-                        width: 36,
-                        height: 36,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFFD9D9D9),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        )
           ],
         ),
       ),
     );
   }
+  //kocham altki x2
   Widget _buildPlaylist() {
+    if (!showPlaylists) {
+      return const Center(
+        child: Text(
+          "You don't have any artists added",
+          style: TextStyle(fontSize: 18),
+        ),
+      );
+    }
+    //kocham altki
     return Container(
       color: Colors.black,
       child: _layoutType == LayoutType.list
@@ -438,6 +339,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
+  //kolejny kom dla zabawy lmao
   Widget _buildPlaylistItem(int index) {
     bool isSelected = selectedPlaylistIndex == index;
     return GestureDetector(
@@ -447,6 +349,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         });
         print('Selected playlist: ${playlists[index]["title"]}');
       },
+      //komentarz bo pustka lmao
       child: Card(
         color: Colors.black,
         clipBehavior: Clip.antiAlias,
@@ -506,9 +409,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           ),
         ),
       ),
+
     );
   }
 }
-
 
 
