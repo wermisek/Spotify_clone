@@ -242,13 +242,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildTilesRow(List<Map<String, String>> tilesData) {
-    return Row(
-      children: tilesData.map((tileData) {
-        return _buildTile(tileData['image']!, tileData['name']!);
-      }).toList(),
-    );
-  }
 
   Widget _buildTilesRowBrowseAll(List<Map<String, String>> tilesData) {
     return Row(
