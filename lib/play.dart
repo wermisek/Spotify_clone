@@ -1,7 +1,6 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:math';
+import 'package:flutter/material.dart';
 import 'screen.dart';
 
 void main() => runApp(const Play());
@@ -19,7 +18,7 @@ class Song {
 }
 
 class Play extends StatelessWidget {
-  const Play({super.key});
+  const Play({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class Play extends StatelessWidget {
 }
 
 class MyMusicPlayer extends StatefulWidget {
-  const MyMusicPlayer({super.key});
+  const MyMusicPlayer({Key? key}) : super(key: key);
 
   @override
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
@@ -87,7 +86,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   late Timer _timer;
 
   List<Song> songs = [
-    Song(title: 'Song 1', artist: 'Artist 1', duration: 50.0),
+    Song(title: 'Unreal', artist: 'Bladee',duration: 50.0),
     Song(title: 'Song 2', artist: 'Artist 2', duration: 65.0),
     Song(title: 'Song 3', artist: 'Artist 3', duration: 75.0),
     Song(title: 'Song 4', artist: 'Artist 4', duration: 100.0),
@@ -107,6 +106,8 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   }
 
   void _playMusic() {
+    if (_isPlaying) return;
+
     final double duration = songs[_currentSongIndex].duration;
 
     setState(() {
@@ -142,7 +143,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     });
   }
 
-
   void _skipToPrevious() {
     setState(() {
       _currentSliderValue = 0.0;
@@ -163,17 +163,13 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     });
 
     if (_shuffleButtonColor == Colors.green) {
-      // Jeśli shuffle jest włączone, wybierz losową piosenkę
       _selectRandomSong();
     } else {
-      // W przeciwnym razie przechodź do następnej piosenki
       _goToNextSong();
     }
 
     print("_currentSongIndex after: $_currentSongIndex");
   }
-
-
 
   void _toggleLike() {
     setState(() {
@@ -193,38 +189,30 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     }
 
     if (_shuffleButtonColor == Colors.green) {
-      // Jeśli shuffle jest włączone, wybierz losową piosenkę
       _selectRandomSong();
     }
-
-    // Tutaj możesz dodać kod do obsługi odtwarzania utworu po zakończeniu obecnej piosenki, jeśli jest to potrzebne
   }
-
 
   void _shuffle() {
     setState(() {
-      _shuffleButtonColor = _shuffleButtonColor == Colors.white ? Colors.green : Colors.white;
+      _shuffleButtonColor =
+      _shuffleButtonColor == Colors.white ? Colors.green : Colors.white;
     });
 
-    // Jeśli aktualnie odtwarzana jest muzyka, zatrzymaj i ponownie uruchom, aby uwzględnić losowy utwór
     if (_isPlaying) {
       _stopMusic();
       _playMusic();
     }
   }
 
-
   void _selectRandomSong() {
-    // Zapisz bieżącą piosenkę, aby uniknąć ponownego odtwarzania tej samej piosenki
     int currentSongIndexBeforeShuffle = _currentSongIndex;
 
-    // Wybierz losowy indeks dla nowej piosenki
     int newSongIndex = currentSongIndexBeforeShuffle;
     while (newSongIndex == currentSongIndexBeforeShuffle) {
       newSongIndex = Random().nextInt(songs.length);
     }
 
-    // Zmiana na nową piosenkę
     setState(() {
       _currentSongIndex = newSongIndex;
       _currentSliderValue = 0.0;
@@ -232,11 +220,13 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   }
 
   void _toggleLoop() {
-
+    setState(() {
+      _loopButtonColor =
+      _loopButtonColor == Colors.white ? Colors.green : Colors.white;
+    });
   }
 
   Color _shuffleButtonColor = Colors.white;
-
   Color _loopButtonColor = Colors.white;
 
   @override
@@ -254,7 +244,19 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           IconButton(
             icon: const CustomMenuIcon(),
             onPressed: () {
-              // Add your onPressed logic here
+              // Dodaj swoją logikę onPressed tutaj
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.share, size: 30.0),
+            onPressed: () {
+              // Dodaj tutaj logikę obsługi ikony "share"
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.menu, size: 30.0),
+            onPressed: () {
+              // Dodaj tutaj logikę obsługi ikony "menu"
             },
           ),
         ],
@@ -263,7 +265,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Screen()),
+              MaterialPageRoute(builder: (context) => const Screen()),
             );
           },
           color: Colors.white,
@@ -296,7 +298,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                       return Container(
                         margin: const EdgeInsets.symmetric(horizontal: 10.0),
                         decoration: BoxDecoration(
-                          color: Colors.grey,
+                          //wstaw zdjecie! :)
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       );
@@ -447,7 +449,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         child: _isPlaying
                             ? Icon(Icons.pause, size: 36.0, color: iconColor)
                             : Icon(Icons.play_arrow, size: 36.0, color: iconColor),
-
                       ),
                     ),
                     const SizedBox(width: 18.0),
@@ -464,9 +465,10 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                       icon: Icon(Icons.loop, size: 36.0, color: _loopButtonColor),
                       onPressed: () {
                         _toggleLoop();
-                        setState(() {
-                          _loopButtonColor = _loopButtonColor == Colors.white ? Colors.green : Colors.white;
-                        });
+                        if (_isPlaying) {
+                          _stopMusic();
+                          _playMusic();
+                        }
                       },
                     ),
                   ],
@@ -477,8 +479,37 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           ),
         ),
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.speaker_group, size: 25.0, color: Colors.white,),
+              onPressed: () {
+                // Dodaj tutaj logikę obsługi ikony głośników
+              },
+            ),
+            Spacer(),
+            IconButton(
+              icon: const Icon(Icons.share, size: 22.0, color: Colors.white,),
+              onPressed: () {
+                // Dodaj tutaj logikę obsługi ikony "share"
+              },
+            ),
+            SizedBox(width: 15.0,),
+            IconButton(
+              icon: const Icon(Icons.menu, size: 29.0, color: Colors.white,),
+              onPressed: () {
+                // Dodaj tutaj logikę obsługi ikony "menu"
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
+
 
   String _formatDuration(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
