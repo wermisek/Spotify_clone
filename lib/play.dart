@@ -86,38 +86,38 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _maxSliderValue = 1.0;
   bool _isPlaying = false;
   late Timer _timer;
-  PageController _pageController = PageController(); // Dodana kontrola PageController
+  final PageController _pageController = PageController();
 
 
   List<Song> songs = [
     Song(
       title: 'Unreal',
       artist: 'Bladee',
-      pictureList: ['assets/liked.png'],
+      pictureList: ['assets/glue.png'],
       duration: 50.0,
     ),
     Song(
-      title: 'Song 2',
-      artist: 'Artist 2',
-      pictureList: ['assets/anime.jpg'],
+      title: 'All in',
+      artist: 'LUCKI, Earl Sweatshirt',
+      pictureList: ['assets/lucky.png'],
       duration: 65.0,
     ),
     Song(
-      title: 'Song 3',
-      artist: 'Artist 3',
-      pictureList: ['assets/blend.jpg'],
+      title: 'Bad blood',
+      artist: 'Taylor Swift',
+      pictureList: ['assets/taylor.png'],
       duration: 75.0,
     ),
     Song(
-      title: 'Song 4',
-      artist: 'Artist 4',
-      pictureList: ['assets/osiem.jpg'],
+      title: 'Hate And Gasoline',
+      artist: 'Sematary',
+      pictureList: ['assets/sevi.jpg'],
       duration: 100.0,
     ),
     Song(
-      title: 'Song 5',
-      artist: 'Artist 5',
-      pictureList: ['assets/siedem.jpeg'],
+      title: 'Rebus',
+      artist: 'Yabujin',
+      pictureList: ['assets/jabudzi.jpeg'],
       duration: 458.0,
     ),
   ];
@@ -133,14 +133,10 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     }
     _updateCurrentSongIndex(_currentSongIndex);
 
-    // Tutaj dodaj logikę aktualizacji obrazu piosenki po kliknięciu przycisku "Skip"
-    // Na przykład, zmień obraz na podstawie aktualnego indeksu piosenki
-    // Możesz zamienić poniższą logikę na swoją rzeczywistą logikę aktualizacji obrazu
     int currentSongIndex = _currentSongIndex;
     if (currentSongIndex >= 0 && currentSongIndex < songs.length) {
       List<String> pictureList = songs[currentSongIndex].pictureList;
       if (pictureList.isNotEmpty) {
-        // Aktualizuj indeks obrazu lub użyj dowolnej innej logiki aktualizacji obrazu
         int newPictureIndex = (pictureList.indexOf(songs[currentSongIndex].pictureList.first) + 1) % pictureList.length;
         songs[currentSongIndex].pictureList = [pictureList[newPictureIndex]];
       }
@@ -215,7 +211,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         _currentSongIndex--;
       });
     }
-    _updateCurrentSongIndex(_currentSongIndex); // Dodana linia
+    _updateCurrentSongIndex(_currentSongIndex);
   }
 
   void _skipToNext() {
@@ -228,7 +224,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     } else {
       _goToNextSong();
     }
-    _updateCurrentSongIndex(_currentSongIndex); // Dodana linia
+    _updateCurrentSongIndex(_currentSongIndex);
   }
 
   void _toggleLike() {
@@ -304,7 +300,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
           IconButton(
             icon: const CustomMenuIcon(),
             onPressed: () {
-              // Dodaj swoją logikę onPressed tutaj
+
             },
           ),
         ],
@@ -344,9 +340,11 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                     controller: _pageController,
                     itemCount: songs.length,
                     itemBuilder: (context, index) {
-                      Song currentSong = songs[index];
                       return Container(
                         margin: const EdgeInsets.symmetric(horizontal: 14.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(
                             Radius.circular(14.0),
@@ -356,9 +354,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                             width: 60,
                             height: 60,
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       );
                     },
@@ -543,21 +538,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
             IconButton(
               icon: const Icon(Icons.speaker_group, size: 25.0, color: Colors.white,),
               onPressed: () {
-                // Dodaj tutaj logikę obsługi ikony głośników
+
               },
             ),
             const Spacer(),
             IconButton(
               icon: const Icon(Icons.share, size: 22.0, color: Colors.white,),
               onPressed: () {
-                // Dodaj tutaj logikę obsługi ikony "share"
+
               },
             ),
             const SizedBox(width: 15.0,),
             IconButton(
               icon: const Icon(Icons.menu, size: 29.0, color: Colors.white,),
               onPressed: () {
-                // Dodaj tutaj logikę obsługi ikony "menu"
+
               },
             ),
           ],
