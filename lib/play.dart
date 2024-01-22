@@ -333,28 +333,21 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               Align(
                 alignment: Alignment.center,
                 child: Container(
-                  margin: const EdgeInsets.only(top: 35.0, bottom: 30.0),
                   width: 350.0,
-                  height: 320.0,
+                  height: 350.0,
                   child: PageView.builder(
                     controller: _pageController,
                     itemCount: songs.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 14.0),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(14.0),
-                          ),
                           child: Image.asset(
                             songs[_currentSongIndex].pictureList.first,
                             width: 60,
                             height: 60,
                           ),
-                        ),
                       );
                     },
                     onPageChanged: (index) {
