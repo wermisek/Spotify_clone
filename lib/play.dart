@@ -9,8 +9,10 @@ class Song {
   final String title;
   final String artist;
   final double duration;
+  late final List<String> pictureList;
 
   Song({
+    required this.pictureList,
     required this.title,
     required this.artist,
     required this.duration,
@@ -18,7 +20,7 @@ class Song {
 }
 
 class Play extends StatelessWidget {
-  const Play({Key? key}) : super(key: key);
+  const Play({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class Play extends StatelessWidget {
 }
 
 class MyMusicPlayer extends StatefulWidget {
-  const MyMusicPlayer({Key? key}) : super(key: key);
+  const MyMusicPlayer({super.key});
 
   @override
   _MyMusicPlayerState createState() => _MyMusicPlayerState();
@@ -84,18 +86,78 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
   double _maxSliderValue = 1.0;
   bool _isPlaying = false;
   late Timer _timer;
+  PageController _pageController = PageController(); // Dodana kontrola PageController
+
 
   List<Song> songs = [
-    Song(title: 'Unreal', artist: 'Bladee',duration: 50.0),
-    Song(title: 'Song 2', artist: 'Artist 2', duration: 65.0),
-    Song(title: 'Song 3', artist: 'Artist 3', duration: 75.0),
-    Song(title: 'Song 4', artist: 'Artist 4', duration: 100.0),
-    Song(title: 'Song 5', artist: 'Artist 5', duration: 458.0),
+    Song(
+      title: 'Unreal',
+      artist: 'Bladee',
+      pictureList: ['assets/liked.png'],
+      duration: 50.0,
+    ),
+    Song(
+      title: 'Song 2',
+      artist: 'Artist 2',
+      pictureList: ['assets/anime.jpg'],
+      duration: 65.0,
+    ),
+    Song(
+      title: 'Song 3',
+      artist: 'Artist 3',
+      pictureList: ['assets/blend.jpg'],
+      duration: 75.0,
+    ),
+    Song(
+      title: 'Song 4',
+      artist: 'Artist 4',
+      pictureList: ['assets/osiem.jpg'],
+      duration: 100.0,
+    ),
+    Song(
+      title: 'Song 5',
+      artist: 'Artist 5',
+      pictureList: ['assets/siedem.jpeg'],
+      duration: 458.0,
+    ),
   ];
+  void _skipToNextAndUpdateImage() {
+    setState(() {
+      _currentSliderValue = 0.0;
+    });
 
+    if (_shuffleButtonColor == Colors.green) {
+      _selectRandomSong();
+    } else {
+      _goToNextSong();
+    }
+    _updateCurrentSongIndex(_currentSongIndex);
+
+    // Tutaj dodaj logikę aktualizacji obrazu piosenki po kliknięciu przycisku "Skip"
+    // Na przykład, zmień obraz na podstawie aktualnego indeksu piosenki
+    // Możesz zamienić poniższą logikę na swoją rzeczywistą logikę aktualizacji obrazu
+    int currentSongIndex = _currentSongIndex;
+    if (currentSongIndex >= 0 && currentSongIndex < songs.length) {
+      List<String> pictureList = songs[currentSongIndex].pictureList;
+      if (pictureList.isNotEmpty) {
+        // Aktualizuj indeks obrazu lub użyj dowolnej innej logiki aktualizacji obrazu
+        int newPictureIndex = (pictureList.indexOf(songs[currentSongIndex].pictureList.first) + 1) % pictureList.length;
+        songs[currentSongIndex].pictureList = [pictureList[newPictureIndex]];
+      }
+    }
+
+    _playMusic();
+  }
   final List<bool> _likedSongs = List.filled(5, false);
 
   int _currentSongIndex = 0;
+
+  void _updateCurrentSongIndex(int index) {
+    setState(() {
+      _currentSongIndex = index;
+      _currentSliderValue = 0.0;
+    });
+  }
 
   void _playPauseMusic() {
     if (_isPlaying) {
@@ -153,11 +215,10 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
         _currentSongIndex--;
       });
     }
+    _updateCurrentSongIndex(_currentSongIndex); // Dodana linia
   }
 
   void _skipToNext() {
-    print("_currentSongIndex before: $_currentSongIndex");
-
     setState(() {
       _currentSliderValue = 0.0;
     });
@@ -167,8 +228,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     } else {
       _goToNextSong();
     }
-
-    print("_currentSongIndex after: $_currentSongIndex");
+    _updateCurrentSongIndex(_currentSongIndex); // Dodana linia
   }
 
   void _toggleLike() {
@@ -247,18 +307,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               // Dodaj swoją logikę onPressed tutaj
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.share, size: 30.0),
-            onPressed: () {
-              // Dodaj tutaj logikę obsługi ikony "share"
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.menu, size: 30.0),
-            onPressed: () {
-              // Dodaj tutaj logikę obsługi ikony "menu"
-            },
-          ),
         ],
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down, size: 36.0),
@@ -293,21 +341,29 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                   width: 350.0,
                   height: 320.0,
                   child: PageView.builder(
+                    controller: _pageController,
                     itemCount: songs.length,
                     itemBuilder: (context, index) {
+                      Song currentSong = songs[index];
                       return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 14.0),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(14.0),
+                          ),
+                          child: Image.asset(
+                            songs[_currentSongIndex].pictureList.first,
+                            width: 60,
+                            height: 60,
+                          ),
+                        ),
                         decoration: BoxDecoration(
-                          //wstaw zdjecie! :)
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       );
                     },
                     onPageChanged: (index) {
-                      setState(() {
-                        _currentSongIndex = index;
-                        _currentSliderValue = 0.0;
-                      });
+                      _updateCurrentSongIndex(index);
                     },
                   ),
                 ),
@@ -458,7 +514,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         size: 48.0,
                         color: Colors.white,
                       ),
-                      onPressed: _skipToNext,
+                      onPressed: _skipToNextAndUpdateImage,
                     ),
                     const SizedBox(width: 18.0),
                     IconButton(
@@ -490,14 +546,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                 // Dodaj tutaj logikę obsługi ikony głośników
               },
             ),
-            Spacer(),
+            const Spacer(),
             IconButton(
               icon: const Icon(Icons.share, size: 22.0, color: Colors.white,),
               onPressed: () {
                 // Dodaj tutaj logikę obsługi ikony "share"
               },
             ),
-            SizedBox(width: 15.0,),
+            const SizedBox(width: 15.0,),
             IconButton(
               icon: const Icon(Icons.menu, size: 29.0, color: Colors.white,),
               onPressed: () {
@@ -509,7 +565,6 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
       ),
     );
   }
-
 
   String _formatDuration(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -524,3 +579,4 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
     super.dispose();
   }
 }
+
