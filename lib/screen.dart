@@ -12,6 +12,7 @@ class Screen extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         // Twoje ustawienia tematu
       ),
+      debugShowCheckedModeBanner: false,
       home: const DisplayPage(),
     );
   }
@@ -59,7 +60,7 @@ class _DisplayPageState extends State<DisplayPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'Explore',
           ),
         ],
       ),

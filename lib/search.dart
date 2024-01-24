@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Spotify clone',
       theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
           color: Colors.black,
         ),
@@ -35,9 +36,11 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+       backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
-          'Search',
+          'Explore',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -64,6 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
       drawer: Drawer(
+        backgroundColor: Colors.black,
         child: Container(
           color: Colors.black,
           child: ListView(
@@ -165,29 +169,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.0),
-                  color: Colors.grey[200],
-                ),
-                child: const TextField(
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'What do you want to listen to?',
-                    hintStyle: TextStyle(
-                      color: Colors.black54,
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(16.0),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
+
               const SizedBox(height: 16.0),
               const Text(
                 'Explore your genres',
@@ -351,3 +333,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+//origin i master prosze
