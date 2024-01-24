@@ -129,11 +129,11 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.history,
+                  Icons.new_releases,
                   color: Colors.white,
                 ),
                 title: const Text(
-                  "Listening history",
+                  "Produced by Ugum company",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -145,11 +145,11 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.settings,
+                  Icons.new_releases,
                   color: Colors.white,
                 ),
                 title: const Text(
-                  'Settings and privacy',
+                  'For more information go to spotify.com',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
