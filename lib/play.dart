@@ -332,7 +332,7 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
               const SizedBox(height: 20.0),
               Align(
                 alignment: Alignment.center,
-                child: Container(
+                child: SizedBox(
                   width: 350.0,
                   height: 350.0,
                   child: PageView.builder(
