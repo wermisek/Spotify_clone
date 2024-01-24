@@ -343,11 +343,14 @@ class _MyMusicPlayerState extends State<MyMusicPlayer> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
                           child: Image.asset(
                             songs[_currentSongIndex].pictureList.first,
                             width: 60,
                             height: 60,
                           ),
+                        )
                       );
                     },
                     onPageChanged: (index) {
