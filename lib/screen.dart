@@ -12,6 +12,7 @@ class Screen extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         // Twoje ustawienia tematu
       ),
+      debugShowCheckedModeBanner: false,
       home: const DisplayPage(),
     );
   }
