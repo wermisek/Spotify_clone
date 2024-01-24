@@ -117,7 +117,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   color: Colors.white,
                 ),
                 title: const Text(
-                  "What's new",
+                  "Current version of application - 7.25",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -333,3 +333,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+//origin i master prosze

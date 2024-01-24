@@ -121,13 +121,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             ),
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-            },
-          ),
-        ],
       ),
       drawer: Drawer(
         child: Container(
@@ -179,7 +172,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   color: Colors.white,
                 ),
                 title: const Text(
-                  "What's new",
+                  "Current version of application - 7.25",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -191,11 +184,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.history,
+                  Icons.new_releases,
                   color: Colors.white,
                 ),
                 title: const Text(
-                  "Listening history",
+                  "Produced by Ugum company",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -207,11 +200,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.settings,
+                  Icons.new_releases,
                   color: Colors.white,
                 ),
                 title: const Text(
-                  'Settings and privacy',
+                  'For more information go to notspotify.com',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
