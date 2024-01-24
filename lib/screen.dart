@@ -59,7 +59,7 @@ class _DisplayPageState extends State<DisplayPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'Explore',
           ),
         ],
       ),
