@@ -179,7 +179,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+
                 },
               ),
               ListTile(
@@ -195,7 +195,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+
                 },
               ),
               ListTile(
@@ -211,7 +211,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+
                 },
               ),
             ],
@@ -292,7 +292,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
       ),
     );
   }
-  //kocham altki x2
+
   Widget _buildPlaylist() {
     if (!showPlaylists) {
       return const Center(
@@ -302,7 +302,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         ),
       );
     }
-    //kocham altki
+
     return Container(
       color: Colors.black,
       child: _layoutType == LayoutType.list
