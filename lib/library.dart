@@ -179,7 +179,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+
                 },
               ),
               ListTile(
@@ -195,7 +195,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+
                 },
               ),
               ListTile(
@@ -211,7 +211,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+
                 },
               ),
             ],

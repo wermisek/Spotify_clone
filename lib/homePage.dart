@@ -84,7 +84,6 @@ class _MyAppState extends State<Home> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
                   },
                 ),
                 ListTile(
@@ -100,7 +99,7 @@ class _MyAppState extends State<Home> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
+
                   },
                 ),
                 ListTile(
@@ -116,7 +115,7 @@ class _MyAppState extends State<Home> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
+
                   },
                 ),
               ],
@@ -138,7 +137,7 @@ class _MyAppState extends State<Home> {
               ),
               child: const Text('All'),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 5),
             TextButton(
               onPressed: () {
                 _handleButtonSelection('Music');
@@ -155,7 +154,7 @@ class _MyAppState extends State<Home> {
                 style: TextStyle(),
               ),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 5),
             TextButton(
               onPressed: () {
                 _handleButtonSelection('Podcasts');
@@ -169,7 +168,7 @@ class _MyAppState extends State<Home> {
               ),
               child: const Text('Podcasts'),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 5),
             TextButton(
               onPressed: () {
                 _handleButtonSelection('Wrapped');
