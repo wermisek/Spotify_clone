@@ -77,7 +77,7 @@ class _MyAppState extends State<Home> {
                     color: Colors.white,
                   ),
                   title: const Text(
-                    "What's new",
+                    "Current version of application - 7.25",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -89,11 +89,11 @@ class _MyAppState extends State<Home> {
                 ),
                 ListTile(
                   leading: const Icon(
-                    Icons.history,
+                    Icons.new_releases,
                     color: Colors.white,
                   ),
                   title: const Text(
-                    "Listening history",
+                    "Produced by Ugum company",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -105,11 +105,11 @@ class _MyAppState extends State<Home> {
                 ),
                 ListTile(
                   leading: const Icon(
-                    Icons.settings,
+                    Icons.new_releases,
                     color: Colors.white,
                   ),
                   title: const Text(
-                    'Settings and privacy',
+                    'For more information go to spotify.com',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
