@@ -200,7 +200,7 @@ class _MyAppState extends State<Home> {
         body: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             Row(
               children: [
@@ -214,8 +214,8 @@ class _MyAppState extends State<Home> {
                       borderRadius: BorderRadius.circular(3),
                     ),
                     backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                    minimumSize: const Size(160, 60),
-                    maximumSize: const Size(190, 60),
+                    minimumSize: const Size(140, 60),
+                    maximumSize: const Size(170, 60),
                   ),
                   child: Row(
                     children: [
@@ -244,7 +244,7 @@ class _MyAppState extends State<Home> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 6),
                 TextButton(
                   onPressed: () {
                     // Tutaj dodaj logikę obsługi przycisku
@@ -255,8 +255,8 @@ class _MyAppState extends State<Home> {
                       borderRadius: BorderRadius.circular(3),
                     ),
                     backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                    minimumSize: const Size(160, 60),
-                    maximumSize: const Size(190, 60),
+                    minimumSize: const Size(140, 60),
+                    maximumSize: const Size(170, 60),
                   ),
                   child: Row(
                     children: [
@@ -302,8 +302,8 @@ class _MyAppState extends State<Home> {
                           borderRadius: BorderRadius.circular(3),
                         ),
                         backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                        minimumSize: const Size(160, 60),
-                        maximumSize: const Size(190, 60),
+                        minimumSize: const Size(140, 60),
+                        maximumSize: const Size(170, 60),
                       ),
                       child: Row(
                         children: [
@@ -332,7 +332,7 @@ class _MyAppState extends State<Home> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 6),
                     TextButton(
                       onPressed: () {
                         // Tutaj dodaj logikę obsługi przycisku
@@ -343,8 +343,8 @@ class _MyAppState extends State<Home> {
                           borderRadius: BorderRadius.circular(3),
                         ),
                         backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                        minimumSize: const Size(160, 60),
-                        maximumSize: const Size(190, 60),
+                        minimumSize: const Size(140, 60),
+                        maximumSize: const Size(170, 60),
                       ),
                       child: Row(
                         children: [
@@ -364,7 +364,7 @@ class _MyAppState extends State<Home> {
                             padding: EdgeInsets.only(
                                 right: 0), // dostosuj margines z prawej strony
                             child: Text(
-                              'Gang drenażowy',
+                              'Gang drena',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -391,8 +391,8 @@ class _MyAppState extends State<Home> {
                             ),
                             backgroundColor:
                             const Color.fromARGB(80, 80, 80, 80),
-                            minimumSize: const Size(160, 60),
-                            maximumSize: const Size(190, 60),
+                            minimumSize: const Size(140, 60),
+                            maximumSize: const Size(170, 60),
                           ),
                           child: Row(
                             children: [
@@ -422,7 +422,7 @@ class _MyAppState extends State<Home> {
                             ],
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 6),
                         TextButton(
                           onPressed: () {
                             // Tutaj dodaj logikę obsługi przycisku
@@ -434,8 +434,8 @@ class _MyAppState extends State<Home> {
                             ),
                             backgroundColor:
                             const Color.fromARGB(80, 80, 80, 80),
-                            minimumSize: const Size(160, 60),
-                            maximumSize: const Size(190, 60),
+                            minimumSize: const Size(140, 60),
+                            maximumSize: const Size(170, 60),
                           ),
                           child: Row(
                             children: [
@@ -486,8 +486,8 @@ class _MyAppState extends State<Home> {
                           borderRadius: BorderRadius.circular(3),
                         ),
                         backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                        minimumSize: const Size(160, 60),
-                        maximumSize: const Size(190, 60),
+                        minimumSize: const Size(140, 60),
+                        maximumSize: const Size(170, 60),
                       ),
                       child: Row(
                         children: [
@@ -516,7 +516,7 @@ class _MyAppState extends State<Home> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 6),
                     TextButton(
                       onPressed: () {
                         // Tutaj dodaj logikę obsługi przycisku
@@ -527,8 +527,8 @@ class _MyAppState extends State<Home> {
                           borderRadius: BorderRadius.circular(3),
                         ),
                         backgroundColor: const Color.fromARGB(80, 80, 80, 80),
-                        minimumSize: const Size(160, 60),
-                        maximumSize: const Size(190, 60),
+                        minimumSize: const Size(140, 60),
+                        maximumSize: const Size(170, 60),
                       ),
                       child: Row(
                         children: [
@@ -562,7 +562,7 @@ class _MyAppState extends State<Home> {
               ],
             ),
             const SizedBox(
-              height: 25.0,
+              height: 0.0,
             ),
             const Row(
               children: [
@@ -577,7 +577,7 @@ class _MyAppState extends State<Home> {
               ],
             ),
             const SizedBox(
-              height: 10.0,
+              height: 0.0,
             ),
             Row(
               children: [
@@ -592,7 +592,7 @@ class _MyAppState extends State<Home> {
                             width: 160,
                             height: 160,
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 6),
                           const Text(
                             "PrzemekBajjajo + grzesio",
                             style: TextStyle(
@@ -613,7 +613,7 @@ class _MyAppState extends State<Home> {
                 ),
               ],
             ),
-            const SizedBox(height: 13.0),
+            const SizedBox(height: 20.0),
         Column(
           children: [
             GestureDetector(
