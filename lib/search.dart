@@ -129,11 +129,11 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.history,
+                  Icons.new_releases,
                   color: Colors.white,
                 ),
                 title: const Text(
-                  "Listening history",
+                  "Produced by Ugum company",
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -145,11 +145,11 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.settings,
+                  Icons.new_releases,
                   color: Colors.white,
                 ),
                 title: const Text(
-                  'Settings and privacy',
+                  'For more information go to spotify.com',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -174,17 +174,17 @@ class _SearchScreenState extends State<SearchScreen> {
               const Text(
                 'Explore your genres',
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 17.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 13.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildTile('assets/#drain.gif', 'Drain'),
                   const SizedBox(width: 16.0),
-                  _buildTile('assets/experimental.gif', 'Experimental'),
+                  _buildTile('assets/experimental.gif', 'Experimental HipHop'),
                   const SizedBox(width: 16.0),
                   _buildTile('assets/rage.gif', 'Rage'),
                 ],
@@ -234,13 +234,13 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildTileBrowseAll(String imagePath, String tileName) {
-    double tileWidth = 172;
+    double tileWidth = 159;
     double tileHeight = 95;
 
     return Container(
       width: tileWidth,
       height: tileHeight,
-      margin: const EdgeInsets.only(right:8.0),
+      margin: const EdgeInsets.only(right:4.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         color: Colors.grey[200],
@@ -333,4 +333,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-//origin i master prosze
+//PUSHUJ SIE PROSZE
